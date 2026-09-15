@@ -4,13 +4,50 @@
 データセットと、それを閲覧するシングルページのビューアです。
 
 - `data/products.json` — 正本データ（これだけを編集する）
-- `src/page.html` — ビューアのテンプレート（`__DATA__` にデータが差し込まれる）
-- `build.mjs` — データをテンプレートに inline して `index.html` を生成
+- `export_xlsx.py` — 正本データから Excel ブックを生成
+- `verify_xlsx.py` — 生成した Excel の数式を検証
+- `dist/日本の生保_貯蓄性商品ラインナップ横断表.xlsx` — Excel 版（生成物）
+- `src/page.html` — ビューアのテンプレート（`__DATA__` / `__XLSX_B64__` が差し込まれる）
+- `build.mjs` — データと Excel ブックを inline して `index.html` を生成
 - `index.html` — 生成物。単体で開ける
 
 ```sh
-node build.mjs     # data/products.json + src/page.html -> index.html
+python3 export_xlsx.py     # data/products.json -> dist/*.xlsx
+python3 verify_xlsx.py     # 数式の関数・参照範囲・期待値を検証
+node build.mjs             # data + xlsx -> index.html
 ```
+
+Excel を作り直したら `node build.mjs` も必ず流し直してください。ページに埋め込まれた
+ブックは `dist/` のファイルと同一バイト列であることが前提です。
+
+## Excel 版
+
+6 シート構成です。
+
+| シート | 内容 |
+| --- | --- |
+| 凡例・注意 | 収録範囲・列の対応・料率の扱い・データの限界。件数は数式（商品一覧を参照） |
+| 商品一覧 | 1 行 1 商品の主表。25 列、オートフィルタ＋ペイン固定 |
+| 商品×類型 | 正規化した 1 行 1 組の表。ピボット用、マトリクスの参照元 |
+| 会社×類型マトリクス | `COUNTIFS` で集計。値のハードコードなし |
+| 裏側の証券会社 | 証券会社・指数提供元を特定できた商品のみ |
+| マスタ | 14 の商品類型（定義付き）・販売チャネル・目的の各コード表 |
+
+集計はすべて数式なので、`商品一覧` と `商品×類型` に行を足せば Excel 側で再計算されます
+（`fullCalcOnLoad` を立ててあるため、開いた時点で必ず再計算されます）。
+
+### 数式の検証について
+
+この環境の LibreOffice は xlsx をロードできず（`soffice --convert-to` が
+`source file could not be loaded` を返す）、xlsx スキル同梱の `recalc.py` を回せませんでした。
+代わりに `verify_xlsx.py` で次を機械的に確認しています。
+
+1. 使用関数が Excel 2007 以前の無印関数（`COUNTA` / `COUNTIF` / `COUNTIFS` / `SUM` /
+   `SUMPRODUCT`）だけであること — `#NAME?` になる後発関数を使っていない
+2. 数式が指す範囲に、期待どおりの件数・中身のデータが実際に入っていること
+3. 351 個の数式セルすべてについて、参照シート・範囲・判定セルが想定どおりであること
+
+**LibreOffice による実計算での突き合わせは行えていません。**
 
 ## 収録の切り口
 

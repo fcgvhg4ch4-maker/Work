@@ -170,6 +170,14 @@
   .card .meta{font-size:12px;color:var(--ink-3);font-family:var(--mono)}
   .none-note{background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:14px 16px;color:var(--ink-2);font-size:13px}
 
+  .dlrow{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center}
+  .dlbtn{appearance:none;font:inherit;font-weight:500;font-size:13px;display:inline-flex;align-items:center;gap:8px;
+    padding:8px 15px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);cursor:pointer}
+  .dlbtn:hover:not(:disabled){filter:brightness(1.12)}
+  .dlbtn:disabled{cursor:default;opacity:.55}
+  .dlbtn .xl{font-family:var(--mono);font-size:10.5px;border:1px solid currentColor;border-radius:2px;padding:0 4px;opacity:.85}
+  .dlnote{font-size:12px;color:var(--ink-2);max-width:62ch}
+  .dlnote.err{color:var(--warn)}
   .empty{background:var(--surface);border:1px dashed var(--line-strong);border-radius:5px;padding:36px 20px;text-align:center;color:var(--ink-2)}
   footer{border-top:1px solid var(--line);background:var(--surface);padding-block:20px 34px;color:var(--ink-3);font-size:12px}
   footer p{margin:0 0 6px;max-width:80ch}
@@ -186,6 +194,12 @@
       <span>収録商品 <b id="st-prod"></b></span>
       <span>引受会社 <b id="st-ins"></b></span>
       <span>証券会社・指数提供元を特定 <b id="st-cp"></b></span>
+    </div>
+    <div class="dlrow">
+      <button class="dlbtn" id="dl" type="button" disabled>
+        <span class="xl">XLSX</span>Excel ブックをダウンロード
+      </button>
+      <p class="dlnote" id="dlnote">6 シート構成（凡例・注意／商品一覧／商品×類型／会社×類型マトリクス／裏側の証券会社／マスタ）。集計は数式なので、行を足せば Excel 側で再計算されます。</p>
     </div>
     <details class="caveat">
       <summary>データの出所と限界（必ずお読みください）</summary>
@@ -253,6 +267,7 @@
 </footer>
 
 <script id="payload" type="application/json">__DATA__</script>
+<script id="xlsx-b64" type="text/plain">__XLSX_B64__</script>
 <script>
 (function(){
   "use strict";
@@ -523,6 +538,64 @@
     if(!el){ document.getElementById("clear").click(); el = document.getElementById("p-"+a.dataset.jump); }
     if(el){ el.open = true; el.scrollIntoView({block:"center", behavior:"smooth"}); }
   });
+
+  // ---------- Excel download ----------
+  // The viewer sandbox blocks page-initiated downloads, so the file goes out
+  // through the downloads capability. It resolves after first paint (or null
+  // when this view cannot save), so the button starts disabled.
+  var XLSX_NAME = "日本の生保_貯蓄性商品ラインナップ横断表.xlsx";
+  var dlBtn = document.getElementById("dl"), dlNote = document.getElementById("dlnote");
+  var dlDefaultNote = dlNote.textContent;
+
+  function xlsxBlob(){
+    var b64 = document.getElementById("xlsx-b64").textContent.trim();
+    var bin = atob(b64), n = bin.length, bytes = new Uint8Array(n);
+    for(var i=0;i<n;i++) bytes[i] = bin.charCodeAt(i);
+    return new Blob([bytes], {type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+  }
+  function note(msg, isErr){
+    dlNote.textContent = msg;
+    dlNote.classList.toggle("err", !!isErr);
+  }
+  (function(){
+    if(!(window.claude && typeof window.claude.use === "function")){
+      dlBtn.remove();
+      note("この表示ではファイル保存を利用できません。Excel ブックはリポジトリの dist/ にあります。");
+      return;
+    }
+    window.claude.use("downloads").then(function(downloads){
+      if(!downloads){
+        dlBtn.remove();
+        note("この表示ではファイル保存を利用できません。Excel ブックはリポジトリの dist/ にあります。");
+        return;
+      }
+      dlBtn.disabled = false;
+      dlBtn.addEventListener("click", function(){
+        dlBtn.disabled = true;
+        note("保存の確認を表示しています…");
+        downloads.save({ filename: XLSX_NAME, data: xlsxBlob() }).then(function(){
+          note("Excel ブックを保存しました。");
+          dlBtn.disabled = false;
+        }).catch(function(e){
+          var code = e && e.code;
+          if(code === "declined"){
+            note(dlDefaultNote);            // viewer said no — say nothing, allow another try
+            dlBtn.disabled = false;
+          } else if(code === "rate_limited"){
+            note("保存の確認が既に開いています。閉じてからもう一度お試しください。", true);
+            dlBtn.disabled = false;
+          } else if(code === "unavailable" || code === "not_granted" ||
+                    code === "capability_disabled" || code === "capability_removed"){
+            dlBtn.remove();
+            note("この表示ではファイル保存を利用できません。Excel ブックはリポジトリの dist/ にあります。", true);
+          } else {
+            note("保存できませんでした（" + (code || "不明なエラー") + "）。時間をおいてお試しください。", true);
+            dlBtn.disabled = false;
+          }
+        });
+      });
+    });
+  })();
 
   // ---------- boot ----------
   document.getElementById("st-date").textContent = DB.meta.compiledOn;
