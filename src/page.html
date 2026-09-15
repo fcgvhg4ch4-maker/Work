@@ -1,0 +1,539 @@
+<title>貯蓄性保険ラインナップ横断表</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --ground:#eceef1; --surface:#ffffff; --surface-2:#f4f6f8; --surface-3:#e7eaee;
+    --ink:#12161c; --ink-2:#4e5a67; --ink-3:#77838f;
+    --line:#d5dae1; --line-strong:#b9c1ca;
+    --accent:#1c3f6e; --accent-ink:#ffffff; --accent-soft:#e2eaf4; --accent-line:#a9c0dd;
+    --ok:#1d6b4f; --ok-soft:#dff0e7;
+    --warn:#8a5510; --warn-soft:#f7ebd8;
+    --flag:#7a2f52; --flag-soft:#f6e4ec;
+    --shadow:0 1px 2px rgba(18,22,28,.06), 0 8px 24px -16px rgba(18,22,28,.35);
+    --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;
+    --disp:"Zen Kaku Gothic New","Noto Sans JP","Hiragino Kaku Gothic ProN",system-ui,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#101318; --surface:#181d24; --surface-2:#1e242c; --surface-3:#262d37;
+      --ink:#e4e8ee; --ink-2:#9aa6b4; --ink-3:#7b8795;
+      --line:#2b323c; --line-strong:#3c4653;
+      --accent:#8fb3e0; --accent-ink:#0e1620; --accent-soft:#1b2734; --accent-line:#33495f;
+      --ok:#5fbd93; --ok-soft:#16291f;
+      --warn:#d6a355; --warn-soft:#2b2214;
+      --flag:#d88fae; --flag-soft:#2c1a22;
+      --shadow:0 1px 2px rgba(0,0,0,.5), 0 8px 24px -16px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#101318; --surface:#181d24; --surface-2:#1e242c; --surface-3:#262d37;
+    --ink:#e4e8ee; --ink-2:#9aa6b4; --ink-3:#7b8795;
+    --line:#2b323c; --line-strong:#3c4653;
+    --accent:#8fb3e0; --accent-ink:#0e1620; --accent-soft:#1b2734; --accent-line:#33495f;
+    --ok:#5fbd93; --ok-soft:#16291f;
+    --warn:#d6a355; --warn-soft:#2b2214;
+    --flag:#d88fae; --flag-soft:#2c1a22;
+    --shadow:0 1px 2px rgba(0,0,0,.5), 0 8px 24px -16px rgba(0,0,0,.8);
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.7;-webkit-text-size-adjust:100%}
+  a{color:var(--accent)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+  .wrap{max-width:1280px;margin:0 auto;padding-inline:20px;padding-block:0}
+
+  /* ---- masthead ---- */
+  header.top{background:var(--surface);border-bottom:1px solid var(--line)}
+  .mast{padding-block:26px 20px;display:grid;gap:14px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:0}
+  h1{font-family:var(--disp);font-weight:700;font-size:clamp(22px,3.4vw,31px);line-height:1.3;margin:0;text-wrap:balance;letter-spacing:.01em}
+  .lede{margin:0;color:var(--ink-2);max-width:66ch}
+  .stamp{display:flex;flex-wrap:wrap;gap:8px 18px;font-family:var(--mono);font-size:11.5px;color:var(--ink-3)}
+  .stamp b{color:var(--ink-2);font-weight:500}
+
+  details.caveat{border:1px solid var(--warn);background:var(--warn-soft);border-radius:4px;color:var(--ink)}
+  details.caveat>summary{cursor:pointer;padding:9px 14px;font-weight:500;font-size:13px;list-style:none;display:flex;gap:8px;align-items:center}
+  details.caveat>summary::-webkit-details-marker{display:none}
+  details.caveat>summary::before{content:"▸";color:var(--warn);font-family:var(--mono)}
+  details.caveat[open]>summary::before{content:"▾"}
+  .caveat-body{padding:0 14px 12px 30px;font-size:12.5px;color:var(--ink-2);display:grid;gap:7px}
+  .caveat-body li{margin:0}
+  .caveat-body ul{margin:0;padding-left:1.1em;display:grid;gap:7px}
+
+  /* ---- view tabs ---- */
+  nav.views{display:flex;gap:2px;border-bottom:1px solid var(--line);background:var(--surface)}
+  nav.views .wrap{display:flex;gap:2px;padding-bottom:0}
+  .vtab{appearance:none;border:0;background:none;font:inherit;font-weight:500;color:var(--ink-2);padding:11px 15px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+  .vtab[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+  .vtab:hover{color:var(--ink)}
+  .vtab .n{font-family:var(--mono);font-size:11px;color:var(--ink-3);margin-left:6px}
+
+  /* ---- layout ---- */
+  .cols{display:grid;grid-template-columns:262px minmax(0,1fr);gap:26px;padding-block:22px 60px;align-items:start}
+  @media (max-width:900px){.cols{grid-template-columns:1fr;gap:16px}}
+
+  /* ---- filters ---- */
+  .rail{position:sticky;top:calc(env(safe-area-inset-top,0px) + 8px);display:grid;gap:14px}
+  @media (max-width:900px){.rail{position:static}}
+  .search{width:100%;font:inherit;padding:9px 11px;border:1px solid var(--line-strong);border-radius:4px;background:var(--surface);color:var(--ink)}
+  .search::placeholder{color:var(--ink-3)}
+  .facet{background:var(--surface);border:1px solid var(--line);border-radius:5px}
+  .facet>summary{cursor:pointer;list-style:none;padding:9px 12px;font-family:var(--disp);font-weight:500;font-size:12.5px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .facet>summary::-webkit-details-marker{display:none}
+  .facet>summary .cnt{font-family:var(--mono);font-size:10.5px;color:var(--ink-3)}
+  .facet>summary .cnt.on{color:var(--accent)}
+  .facet-body{padding:0 10px 10px;display:flex;flex-wrap:wrap;gap:5px}
+  .chip{appearance:none;font:inherit;font-size:12px;line-height:1.45;padding:3.5px 9px;border:1px solid var(--line-strong);background:var(--surface-2);color:var(--ink-2);border-radius:999px;cursor:pointer;white-space:nowrap}
+  .chip:hover{border-color:var(--accent-line);color:var(--ink)}
+  .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:500}
+  .chip .k{font-family:var(--mono);font-size:10px;opacity:.7;margin-left:5px}
+  .rail-actions{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+  .linkbtn{appearance:none;border:0;background:none;font:inherit;font-size:12px;color:var(--accent);cursor:pointer;padding:2px 0;text-decoration:underline;text-underline-offset:2px}
+  .groupsel{font:inherit;font-size:12px;padding:5px 8px;border:1px solid var(--line-strong);border-radius:4px;background:var(--surface);color:var(--ink)}
+
+  /* ---- results ---- */
+  .resbar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:baseline;justify-content:space-between;margin-bottom:14px}
+  .rescount{font-family:var(--mono);font-size:12px;color:var(--ink-2)}
+  .rescount b{color:var(--ink);font-size:16px;font-weight:500}
+
+  .grouphd{display:flex;align-items:baseline;gap:10px;margin:26px 0 9px;padding-bottom:6px;border-bottom:1.5px solid var(--line-strong)}
+  .grouphd:first-child{margin-top:0}
+  .grouphd h2{font-family:var(--disp);font-weight:700;font-size:15px;margin:0;letter-spacing:.01em}
+  .grouphd .gn{font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+  .grouphd .gnote{font-size:11.5px;color:var(--ink-3);margin-left:auto;text-align:right;max-width:52ch;line-height:1.5}
+  @media (max-width:700px){.grouphd .gnote{display:none}}
+
+  .rows{display:grid;gap:7px}
+  .row{background:var(--surface);border:1px solid var(--line);border-radius:5px;overflow:hidden}
+  .row.flagged{border-left:3px solid var(--flag)}
+  .row>summary{cursor:pointer;list-style:none;padding:11px 13px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 14px;align-items:start}
+  .row>summary::-webkit-details-marker{display:none}
+  .row>summary:hover{background:var(--surface-2)}
+  .nm{font-family:var(--disp);font-weight:700;font-size:15px;line-height:1.45;margin:0;color:var(--ink)}
+  .sub{font-size:12px;color:var(--ink-2);margin:1px 0 0}
+  .sub .co{color:var(--ink);font-weight:500}
+  .sub .off{color:var(--ink-3)}
+  .tags{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end;max-width:100%}
+  @media (max-width:640px){.row>summary{grid-template-columns:1fr}.tags{justify-content:flex-start}}
+  .t{font-family:var(--mono);font-size:10.5px;line-height:1.6;padding:1px 7px;border-radius:3px;border:1px solid var(--line-strong);color:var(--ink-2);background:var(--surface-2);white-space:nowrap}
+  .t.pay{border-color:var(--accent-line);color:var(--accent);background:var(--accent-soft);font-weight:500}
+  .t.cur{font-variant-numeric:tabular-nums}
+  .t.idx{border-color:var(--flag);color:var(--flag);background:var(--flag-soft)}
+  .t.cp{border-color:var(--flag);color:var(--flag);background:var(--flag-soft);font-weight:500}
+  .t.ok{border-color:var(--ok);color:var(--ok);background:var(--ok-soft)}
+  .t.chk{border-color:var(--warn);color:var(--warn);background:var(--warn-soft)}
+
+  .detail{border-top:1px solid var(--line);background:var(--surface-2);padding:14px 13px;display:grid;gap:13px}
+  .summary-txt{margin:0;color:var(--ink);max-width:76ch;font-size:13.5px}
+  .kv{display:grid;grid-template-columns:104px minmax(0,1fr);gap:4px 14px;font-size:13px}
+  @media (max-width:560px){.kv{grid-template-columns:1fr;gap:1px 0}.kv dt{margin-top:8px}}
+  .kv dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--ink-3);text-transform:uppercase;padding-top:4px}
+  .kv dd{margin:0;color:var(--ink-2)}
+  .kv dd strong{color:var(--ink);font-weight:500}
+  .pill-list{display:flex;flex-wrap:wrap;gap:4px}
+  .pill{font-size:11.5px;padding:1px 8px;border-radius:999px;background:var(--surface-3);color:var(--ink-2);border:1px solid var(--line)}
+  .pill.pn{background:var(--accent-soft);border-color:var(--accent-line);color:var(--accent);font-weight:500}
+  .cpbox{border:1px solid var(--flag);background:var(--flag-soft);border-radius:4px;padding:10px 12px;display:grid;gap:5px;font-size:12.5px}
+  .cpbox .cph{font-family:var(--disp);font-weight:700;font-size:13px;color:var(--flag);display:flex;align-items:center;gap:7px}
+  .cpbox .cpi{font-family:var(--mono);font-size:11.5px;color:var(--ink-2);word-break:break-word}
+  .cpbox p{margin:0;color:var(--ink-2)}
+  .ratebox{border:1px solid var(--line-strong);background:var(--surface);border-radius:4px;padding:10px 12px;display:grid;gap:4px;font-size:12.5px}
+  .ratebox .rh{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+  .ratebox .rv{color:var(--ink);font-weight:500;font-size:13px}
+  .ratebox .rv.none{color:var(--warn);font-weight:400}
+  .ratebox p{margin:0;color:var(--ink-2)}
+  .srcs{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11.5px;font-family:var(--mono)}
+  .srcs a{word-break:break-all}
+
+  /* ---- matrix ---- */
+  .scrollx{overflow-x:auto;border:1px solid var(--line);border-radius:5px;background:var(--surface)}
+  table{border-collapse:collapse;width:100%;font-size:12.5px}
+  th,td{border-bottom:1px solid var(--line);border-right:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:middle}
+  th{background:var(--surface-2);font-family:var(--disp);font-weight:500;font-size:11.5px;color:var(--ink-2);position:sticky;top:0;z-index:1}
+  thead th:first-child{left:0;z-index:2}
+  tbody th{position:sticky;left:0;background:var(--surface-2);font-weight:700;font-size:12px;color:var(--ink);white-space:nowrap;z-index:1}
+  td{text-align:center;font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink-3)}
+  td.has{color:var(--accent-ink);background:var(--accent);font-weight:500}
+  td.has.l1{background:var(--accent-soft);color:var(--accent)}
+  th.rot{font-size:11px;min-width:58px;line-height:1.35;white-space:normal}
+
+  /* ---- counterparty view ---- */
+  .cards{display:grid;gap:12px}
+  .card{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--flag);border-radius:5px;padding:14px 16px;display:grid;gap:8px}
+  .card h3{font-family:var(--disp);font-weight:700;font-size:15px;margin:0;color:var(--ink)}
+  .card .who{font-family:var(--disp);font-weight:700;font-size:14px;color:var(--flag);margin:0}
+  .card .meta{font-size:12px;color:var(--ink-3);font-family:var(--mono)}
+  .none-note{background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:14px 16px;color:var(--ink-2);font-size:13px}
+
+  .empty{background:var(--surface);border:1px dashed var(--line-strong);border-radius:5px;padding:36px 20px;text-align:center;color:var(--ink-2)}
+  footer{border-top:1px solid var(--line);background:var(--surface);padding-block:20px 34px;color:var(--ink-3);font-size:12px}
+  footer p{margin:0 0 6px;max-width:80ch}
+  .hidden{display:none!important}
+</style>
+
+<header class="top">
+  <div class="wrap mast">
+    <p class="eyebrow">Japan Life Insurance · Savings &amp; Wealth Products</p>
+    <h1>日本の生命保険会社 貯蓄性商品ラインナップ横断表</h1>
+    <p class="lede">銀行窓販・証券窓販を中心とした貯蓄性／資産形成系の生保商品を、販売チャネル・商品類型・目的・ペットネーム・裏側の証券会社・料率の確認先で横断比較します。</p>
+    <div class="stamp">
+      <span>編纂日 <b id="st-date"></b></span>
+      <span>収録商品 <b id="st-prod"></b></span>
+      <span>引受会社 <b id="st-ins"></b></span>
+      <span>証券会社・指数提供元を特定 <b id="st-cp"></b></span>
+    </div>
+    <details class="caveat">
+      <summary>データの出所と限界（必ずお読みください）</summary>
+      <div class="caveat-body">
+        <ul id="limits"></ul>
+      </div>
+    </details>
+  </div>
+</header>
+
+<nav class="views">
+  <div class="wrap">
+    <button class="vtab" id="tab-list" aria-selected="true" type="button">商品一覧<span class="n" id="n-list"></span></button>
+    <button class="vtab" id="tab-matrix" aria-selected="false" type="button">会社 × 類型<span class="n">マトリクス</span></button>
+    <button class="vtab" id="tab-cp" aria-selected="false" type="button">裏側の証券会社<span class="n" id="n-cp"></span></button>
+  </div>
+</nav>
+
+<main class="wrap cols">
+  <aside class="rail" id="rail">
+    <input class="search" id="q" type="search" placeholder="商品名・会社名・指数名で検索" aria-label="検索" autocomplete="off">
+    <div class="rail-actions">
+      <label style="font-size:12px;color:var(--ink-2)">並び順
+        <select class="groupsel" id="groupby">
+          <option value="category">商品類型ごと</option>
+          <option value="insurer">引受会社ごと</option>
+        </select>
+      </label>
+      <button class="linkbtn" id="clear" type="button">条件をクリア</button>
+    </div>
+    <div id="facets"></div>
+  </aside>
+
+  <section id="panes">
+    <div id="pane-list">
+      <div class="resbar">
+        <p class="rescount"><b id="cnt">0</b> 件 / <span id="tot">0</span> 件中</p>
+        <p class="rescount" id="activebits"></p>
+      </div>
+      <div id="results"></div>
+    </div>
+
+    <div id="pane-matrix" class="hidden">
+      <div class="resbar">
+        <p class="rescount">引受会社 × 商品類型の取扱マトリクス（現在の絞り込みを反映・数字は商品数）</p>
+      </div>
+      <div class="scrollx"><table id="matrix"></table></div>
+    </div>
+
+    <div id="pane-cp" class="hidden">
+      <div class="resbar">
+        <p class="rescount">参照指数・戦略債の提供者、または指数設計に関与する証券会社が特定できた商品</p>
+      </div>
+      <div class="cards" id="cpcards"></div>
+      <p class="none-note" style="margin-top:14px">上記以外の商品は、定額（積立利率・予定利率）型か、特別勘定を投資信託で運用する変額型であり、公表情報の範囲では外部証券会社の介在は確認できませんでした。指数連動型・戦略連動債型の商品では、交付書面（契約締結前交付書面・重要情報シート）の「参照指数について」の節に指数管理者と算出者が明記されるのが通例です。</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>出典の扱い</strong>：各レコードの「出典」に一次 URL を保持しています。商品の改定・新旧世代の切替が頻繁な分野のため、提案・比較に用いる前に必ず出典先で現行スペックをご確認ください。</p>
+    <p><strong>料率について</strong>：積立利率・予定利率は各社とも原則として毎月2回（1日・16日）改定され、通貨・契約年齢・プラン・高額契約の別で異なります。本表は確定値の保持ではなく「決まり方と公式の確認先」を持たせる設計です。</p>
+  </div>
+</footer>
+
+<script id="payload" type="application/json">__DATA__</script>
+<script>
+(function(){
+  "use strict";
+  var DB = JSON.parse(document.getElementById("payload").textContent);
+  var CATS = DB.taxonomies.categories, CHANS = DB.taxonomies.channels, PURPS = DB.taxonomies.purposes;
+  var P = DB.products;
+
+  var catById = {}, chanById = {}, purpById = {};
+  CATS.forEach(function(c){catById[c.id]=c;});
+  CHANS.forEach(function(c){chanById[c.id]=c;});
+  PURPS.forEach(function(p){purpById[p.id]=p;});
+
+  var INSURERS = [];
+  P.forEach(function(p){ if(INSURERS.indexOf(p.insurer)<0) INSURERS.push(p.insurer); });
+  var CURRS = ["円","米ドル","豪ドル","ユーロ"];
+  var PAYS = ["一時払","平準払"];
+
+  // ---------- state ----------
+  var S = { q:"", category:[], channel:[], purpose:[], pay:[], currency:[], insurer:[], special:[], groupby:"category" };
+
+  function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g,function(m){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m];}); }
+  function payOf(p){ return PAYS.filter(function(x){ return p.payment.indexOf(x)>=0; }); }
+
+  function match(p){
+    if(S.category.length && !p.categories.some(function(c){return S.category.indexOf(c)>=0;})) return false;
+    if(S.channel.length && !p.channels.some(function(c){return S.channel.indexOf(c)>=0;})) return false;
+    if(S.purpose.length && !p.purposes.some(function(c){return S.purpose.indexOf(c)>=0;})) return false;
+    if(S.pay.length && !payOf(p).some(function(c){return S.pay.indexOf(c)>=0;})) return false;
+    if(S.currency.length && !p.currencies.some(function(c){return S.currency.indexOf(c)>=0;})) return false;
+    if(S.insurer.length && S.insurer.indexOf(p.insurer)<0) return false;
+    if(S.special.indexOf("cp")>=0 && !p.counterparty.present) return false;
+    if(S.special.indexOf("idx")>=0 && !p.indexLinked) return false;
+    if(S.special.indexOf("ok")>=0 && p.confidence!=="confirmed") return false;
+    if(S.q){
+      var hay = [p.insurer,p.group,p.officialName,p.summary,p.petNames.join(" "),p.distributors.join(" "),
+                 p.counterparty.name,p.counterparty.index,p.counterparty.role,p.rate.value,p.rate.note,p.ageRange].join(" ").toLowerCase();
+      if(hay.indexOf(S.q.toLowerCase())<0) return false;
+    }
+    return true;
+  }
+
+  // ---------- facets ----------
+  function facet(key, title, items){
+    var sel = S[key];
+    var open = key==="category" || key==="special";
+    var h = '<details class="facet"'+(open?" open":"")+'><summary>'+esc(title)+
+            '<span class="cnt'+(sel.length?" on":"")+'">'+(sel.length?sel.length+" 選択":"すべて")+'</span></summary><div class="facet-body">';
+    items.forEach(function(it){
+      var on = sel.indexOf(it.id)>=0;
+      h += '<button class="chip" type="button" data-facet="'+esc(key)+'" data-val="'+esc(it.id)+'" aria-pressed="'+on+'">'+
+           esc(it.label)+(it.n!=null?'<span class="k">'+it.n+'</span>':'')+'</button>';
+    });
+    return h+'</div></details>';
+  }
+  function countBy(fn){
+    var m = {};
+    P.forEach(function(p){ fn(p).forEach(function(k){ m[k]=(m[k]||0)+1; }); });
+    return m;
+  }
+  function renderFacets(){
+    var nCat = countBy(function(p){return p.categories;});
+    var nCh  = countBy(function(p){return p.channels;});
+    var nPu  = countBy(function(p){return p.purposes;});
+    var nCu  = countBy(function(p){return p.currencies;});
+    var nPa  = countBy(function(p){return payOf(p);});
+    var nIn  = countBy(function(p){return [p.insurer];});
+    var byGroup = {};
+    CATS.forEach(function(c){ (byGroup[c.group]=byGroup[c.group]||[]).push({id:c.id,label:c.label,n:nCat[c.id]||0}); });
+
+    var h = "";
+    h += facet("special","注目の切り口",[
+      {id:"cp",  label:"裏側に証券会社あり", n:P.filter(function(p){return p.counterparty.present;}).length},
+      {id:"idx", label:"指数連動",           n:P.filter(function(p){return p.indexLinked;}).length},
+      {id:"ok",  label:"確認済のみ",         n:P.filter(function(p){return p.confidence==="confirmed";}).length}
+    ]);
+    Object.keys(byGroup).forEach(function(g){
+      h += facet("category","商品類型 — "+g, byGroup[g]);
+    });
+    h += facet("pay","払方", PAYS.map(function(x){return {id:x,label:x,n:nPa[x]||0};}));
+    h += facet("currency","通貨", CURRS.map(function(x){return {id:x,label:x,n:nCu[x]||0};}));
+    h += facet("channel","販売チャネル", CHANS.map(function(c){return {id:c.id,label:c.label,n:nCh[c.id]||0};}));
+    h += facet("purpose","目的・ニーズ", PURPS.map(function(c){return {id:c.id,label:c.label,n:nPu[c.id]||0};}));
+    h += facet("insurer","引受会社", INSURERS.map(function(x){return {id:x,label:x,n:nIn[x]||0};}));
+    document.getElementById("facets").innerHTML = h;
+  }
+
+  // ---------- rows ----------
+  function tagsFor(p){
+    var t = "";
+    payOf(p).forEach(function(x){ t += '<span class="t pay">'+esc(x)+'</span>'; });
+    p.currencies.forEach(function(c){ t += '<span class="t cur">'+esc(c)+'</span>'; });
+    if(p.indexLinked) t += '<span class="t idx">指数連動</span>';
+    if(p.counterparty.present) t += '<span class="t cp">証券会社 '+esc(p.counterparty.name ? p.counterparty.name.split("／")[0].replace(/（.*$/,"") : "要特定")+'</span>';
+    t += p.confidence==="confirmed" ? '<span class="t ok">確認済</span>' : '<span class="t chk">要確認</span>';
+    return t;
+  }
+
+  // A product listed under several 類型 renders once per group, so only the first
+  // occurrence carries the anchor id — duplicate ids break the jump from 裏側の証券会社.
+  function rowHTML(p, owns){
+    var cats = p.categories.map(function(c){return catById[c].label;}).join(" / ");
+    var h = '<details class="row'+(p.counterparty.present?" flagged":"")+'"'+(owns?' id="p-'+esc(p.id)+'"':"")+'>';
+    h += '<summary><div><p class="nm">'+esc(p.petNames[0])+'</p>'+
+         '<p class="sub"><span class="co">'+esc(p.insurer)+'</span> ／ '+esc(cats)+
+         '<br><span class="off">'+esc(p.officialName)+'</span></p></div>'+
+         '<div class="tags">'+tagsFor(p)+'</div></summary>';
+
+    h += '<div class="detail">';
+    h += '<p class="summary-txt">'+esc(p.summary)+'</p>';
+
+    h += '<dl class="kv">';
+    h += '<dt>ペットネーム</dt><dd><div class="pill-list">'+p.petNames.map(function(n){return '<span class="pill pn">'+esc(n)+'</span>';}).join("")+'</div>'+
+         (p.petNames.length>1?'<div style="font-size:11.5px;color:var(--ink-3);margin-top:3px">同一商品・同一シリーズの別名称／世代違い／販売会社別の販売名称を含む</div>':'')+'</dd>';
+    h += '<dt>販売チャネル</dt><dd><div class="pill-list">'+p.channels.map(function(c){return '<span class="pill">'+esc(chanById[c].label)+'</span>';}).join("")+'</div></dd>';
+    h += '<dt>取扱会社</dt><dd>'+esc(p.distributors.join(" ／ "))+'</dd>';
+    h += '<dt>目的・ニーズ</dt><dd><div class="pill-list">'+p.purposes.map(function(c){return '<span class="pill">'+esc(purpById[c].label)+'</span>';}).join("")+'</div></dd>';
+    h += '<dt>契約年齢</dt><dd>'+(p.ageRange?esc(p.ageRange):'<span style="color:var(--ink-3)">公表情報では未確認（交付書面で要確認）</span>')+'</dd>';
+    h += '<dt>引受会社</dt><dd><strong>'+esc(p.insurer)+'</strong>　<span style="color:var(--ink-3)">'+esc(p.group)+'</span></dd>';
+    h += '</dl>';
+
+    if(p.counterparty.present){
+      h += '<div class="cpbox"><p class="cph">裏側の証券会社・指数提供者</p>'+
+           '<p><strong style="color:var(--flag)">'+esc(p.counterparty.name)+'</strong></p>'+
+           (p.counterparty.role?'<p>'+esc(p.counterparty.role)+'</p>':'')+
+           (p.counterparty.index?'<p class="cpi">参照指数／戦略：'+esc(p.counterparty.index)+'</p>':'')+
+           (p.counterparty.note?'<p style="color:var(--ink-3)">'+esc(p.counterparty.note)+'</p>':'')+
+           '</div>';
+    } else if(p.counterparty.note){
+      h += '<div class="ratebox"><span class="rh">裏側の証券会社</span><p>'+esc(p.counterparty.note)+'</p></div>';
+    }
+
+    h += '<div class="ratebox"><span class="rh">最新の料率</span>'+
+         '<span class="rv'+(p.rate.value?"":" none")+'">'+(p.rate.value?esc(p.rate.value):"確定値は非収録 — 下記の公式ページで契約日を指定して確認")+'</span>'+
+         (p.rate.asOf?'<p><span style="font-family:var(--mono);font-size:11px;color:var(--ink-3)">改定・基準：</span>'+esc(p.rate.asOf)+'</p>':'')+
+         (p.rate.note?'<p>'+esc(p.rate.note)+'</p>':'')+
+         (p.rate.url?'<p><a href="'+esc(p.rate.url)+'" target="_blank" rel="noopener noreferrer">公式の料率・指数ページを開く →</a></p>':'')+
+         '</div>';
+
+    h += '<div><div style="font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:3px">出典</div>'+
+         '<div class="srcs">'+p.sources.map(function(u,i){return '<a href="'+esc(u)+'" target="_blank" rel="noopener noreferrer">['+(i+1)+'] '+esc(u.replace(/^https?:\/\//,"").slice(0,64))+(u.length>71?"…":"")+'</a>';}).join("")+'</div></div>';
+
+    h += '</div></details>';
+    return h;
+  }
+
+  function renderList(list){
+    var box = document.getElementById("results");
+    if(!list.length){ box.innerHTML = '<div class="empty">条件に合う商品がありません。絞り込みを緩めてください。</div>'; return; }
+    var groups = [];
+    if(S.groupby==="category"){
+      CATS.forEach(function(c){
+        var items = list.filter(function(p){ return p.categories.indexOf(c.id)>=0; });
+        if(items.length) groups.push({key:c.id,label:c.label,note:c.note,items:items});
+      });
+    } else {
+      INSURERS.forEach(function(ins){
+        var items = list.filter(function(p){ return p.insurer===ins; });
+        if(items.length) groups.push({key:ins,label:ins,note:items[0].group,items:items});
+      });
+    }
+    var seen = {};
+    box.innerHTML = groups.map(function(g){
+      var rows = g.items.map(function(p){
+        var owns = !seen[p.id]; seen[p.id] = true;
+        return rowHTML(p, owns);
+      }).join("");
+      return '<div class="grouphd"><h2>'+esc(g.label)+'</h2><span class="gn">'+g.items.length+'</span>'+
+             (g.note?'<span class="gnote">'+esc(g.note)+'</span>':'')+'</div>'+
+             '<div class="rows">'+rows+'</div>';
+    }).join("");
+  }
+
+  function renderMatrix(list){
+    var rows = INSURERS.filter(function(ins){ return list.some(function(p){return p.insurer===ins;}); });
+    var h = '<thead><tr><th>引受会社</th>';
+    CATS.forEach(function(c){ h += '<th class="rot">'+esc(c.label)+'</th>'; });
+    h += '<th class="rot">計</th></tr></thead><tbody>';
+    rows.forEach(function(ins){
+      var mine = list.filter(function(p){return p.insurer===ins;});
+      h += '<tr><th>'+esc(ins)+'</th>';
+      CATS.forEach(function(c){
+        var n = mine.filter(function(p){return p.categories.indexOf(c.id)>=0;}).length;
+        h += '<td class="'+(n?(n>1?"has":"has l1"):"")+'">'+(n||"·")+'</td>';
+      });
+      h += '<td>'+mine.length+'</td></tr>';
+    });
+    h += '</tbody>';
+    document.getElementById("matrix").innerHTML = h;
+  }
+
+  function renderCP(){
+    var list = P.filter(function(p){return p.counterparty.present;});
+    document.getElementById("cpcards").innerHTML = list.map(function(p){
+      return '<div class="card">'+
+        '<div class="meta">'+esc(p.insurer)+'</div>'+
+        '<h3>'+esc(p.petNames[0])+'</h3>'+
+        '<p class="who">'+esc(p.counterparty.name)+'</p>'+
+        (p.counterparty.role?'<p style="margin:0;color:var(--ink-2);font-size:13px">'+esc(p.counterparty.role)+'</p>':'')+
+        (p.counterparty.index?'<p style="margin:0;font-family:var(--mono);font-size:12px;color:var(--ink-2);word-break:break-word">'+esc(p.counterparty.index)+'</p>':'')+
+        (p.counterparty.note?'<p style="margin:0;color:var(--ink-3);font-size:12px">'+esc(p.counterparty.note)+'</p>':'')+
+        '<p class="meta" style="margin:0"><a href="#p-'+esc(p.id)+'" data-jump="'+esc(p.id)+'">商品一覧で開く →</a></p>'+
+      '</div>';
+    }).join("");
+  }
+
+  // ---------- activity summary ----------
+  function activeBits(){
+    var bits = [];
+    if(S.q) bits.push('検索「'+S.q+'」');
+    [["category",CATS.reduce(function(a,c){a[c.id]=c.label;return a;},{})],
+     ["channel",CHANS.reduce(function(a,c){a[c.id]=c.label;return a;},{})],
+     ["purpose",PURPS.reduce(function(a,c){a[c.id]=c.label;return a;},{})]].forEach(function(pair){
+      if(S[pair[0]].length) bits.push(S[pair[0]].map(function(v){return pair[1][v];}).join("・"));
+    });
+    ["pay","currency","insurer"].forEach(function(k){ if(S[k].length) bits.push(S[k].join("・")); });
+    if(S.special.indexOf("cp")>=0) bits.push("裏側に証券会社あり");
+    if(S.special.indexOf("idx")>=0) bits.push("指数連動");
+    if(S.special.indexOf("ok")>=0) bits.push("確認済のみ");
+    document.getElementById("activebits").textContent = bits.length ? "絞り込み： "+bits.join(" ／ ") : "";
+  }
+
+  function render(){
+    var list = P.filter(match);
+    document.getElementById("cnt").textContent = list.length;
+    document.getElementById("tot").textContent = P.length;
+    document.getElementById("n-list").textContent = list.length + " 件";
+    renderList(list);
+    renderMatrix(list);
+    activeBits();
+  }
+
+  // ---------- wiring ----------
+  document.getElementById("facets").addEventListener("click", function(e){
+    var b = e.target.closest("button.chip"); if(!b) return;
+    var k = b.dataset.facet, v = b.dataset.val, arr = S[k], i = arr.indexOf(v);
+    if(i<0) arr.push(v); else arr.splice(i,1);
+    var det = b.closest("details.facet"); var wasOpen = det && det.open;
+    renderFacets();
+    if(wasOpen){
+      var all = Array.prototype.slice.call(document.querySelectorAll("#facets details.facet"));
+      all.forEach(function(d){ if(d.querySelector('[data-facet="'+k+'"]')) d.open = true; });
+    }
+    render();
+  });
+  document.getElementById("q").addEventListener("input", function(e){ S.q = e.target.value.trim(); render(); });
+  document.getElementById("groupby").addEventListener("change", function(e){ S.groupby = e.target.value; render(); });
+  document.getElementById("clear").addEventListener("click", function(){
+    S.q=""; S.category=[]; S.channel=[]; S.purpose=[]; S.pay=[]; S.currency=[]; S.insurer=[]; S.special=[];
+    document.getElementById("q").value=""; renderFacets(); render();
+  });
+
+  var tabs = {list:"pane-list", matrix:"pane-matrix", cp:"pane-cp"};
+  function showTab(name){
+    Object.keys(tabs).forEach(function(k){
+      document.getElementById("tab-"+k).setAttribute("aria-selected", String(k===name));
+      document.getElementById(tabs[k]).classList.toggle("hidden", k!==name);
+    });
+    document.getElementById("rail").classList.toggle("hidden", name==="cp");
+  }
+  Object.keys(tabs).forEach(function(k){
+    document.getElementById("tab-"+k).addEventListener("click", function(){ showTab(k); });
+  });
+  document.getElementById("cpcards").addEventListener("click", function(e){
+    var a = e.target.closest("a[data-jump]"); if(!a) return;
+    e.preventDefault();
+    showTab("list");
+    var el = document.getElementById("p-"+a.dataset.jump);
+    if(!el){ document.getElementById("clear").click(); el = document.getElementById("p-"+a.dataset.jump); }
+    if(el){ el.open = true; el.scrollIntoView({block:"center", behavior:"smooth"}); }
+  });
+
+  // ---------- boot ----------
+  document.getElementById("st-date").textContent = DB.meta.compiledOn;
+  document.getElementById("st-prod").textContent = P.length + " 商品";
+  document.getElementById("st-ins").textContent = INSURERS.length + " 社";
+  var nCP = P.filter(function(p){return p.counterparty.present;}).length;
+  document.getElementById("st-cp").textContent = nCP + " 商品";
+  document.getElementById("n-cp").textContent = nCP + " 件";
+  document.getElementById("limits").innerHTML = DB.meta.limitations.map(function(t){return "<li>"+esc(t)+"</li>";}).join("");
+  renderFacets();
+  renderCP();
+  render();
+})();
+</script>
