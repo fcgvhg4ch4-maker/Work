@@ -26,6 +26,10 @@ BANNED = {"XLOOKUP", "XMATCH", "SORT", "FILTER", "UNIQUE", "SEQUENCE",
 P = DB["products"]
 CAT = {c["id"]: c for c in DB["taxonomies"]["categories"]}
 CATS = DB["taxonomies"]["categories"]
+PURP_LIST = DB["taxonomies"]["purposes"]
+PURPS = {x["id"]: x["label"] for x in PURP_LIST}
+BANDS = DB["taxonomies"]["ageBands"]
+BAND = {b["id"]: b for b in BANDS}
 INSURERS = list(dict.fromkeys(p["insurer"] for p in P))
 
 wb = load_workbook(XLSX)          # formulas
@@ -61,15 +65,24 @@ wsL = wb["商品一覧"]
 LAST = len(P) + 1
 ok("商品一覧の最終データ行", wsL.max_row, LAST)
 ok("A列(商品ID)の非空セル数", sum(1 for r in range(2, LAST + 1) if wsL.cell(r, 1).value), len(P))
-ok("Q列(裏側の証券会社)の非空セル数",
-   sum(1 for r in range(2, LAST + 1) if wsL.cell(r, 17).value),
+ok("S列(裏側の証券会社)の非空セル数",
+   sum(1 for r in range(2, LAST + 1) if wsL.cell(r, 19).value),
    sum(1 for p in P if p["counterparty"]["present"]))
 ok("K列(指数連動)の●の数",
    sum(1 for r in range(2, LAST + 1) if wsL.cell(r, 11).value == "●"),
    sum(1 for p in P if p["indexLinked"]))
-ok("X列(確度)の確認済の数",
-   sum(1 for r in range(2, LAST + 1) if wsL.cell(r, 24).value == "確認済"),
+ok("Z列(確度)の確認済の数",
+   sum(1 for r in range(2, LAST + 1) if wsL.cell(r, 26).value == "確認済"),
    sum(1 for p in P if p["confidence"] == "confirmed"))
+ok("O列(主ニーズ)の中身",
+   [wsL.cell(r, 15).value for r in range(2, LAST + 1)],
+   [PURPS[p["primaryNeed"]] for p in P])
+ok("Q列(対象年齢層)の中身",
+   [wsL.cell(r, 17).value for r in range(2, LAST + 1)],
+   ["、".join(BAND[b]["label"] for b in p["ageBands"]) for p in P])
+ok("R列(契約年齢)の実値がある商品数",
+   sum(1 for r in range(2, LAST + 1) if wsL.cell(r, 18).value),
+   sum(1 for p in P if p["ageRange"]))
 ok("B列の異なり引受会社数",
    len({wsL.cell(r, 2).value for r in range(2, LAST + 1)}), len(INSURERS))
 
@@ -105,6 +118,48 @@ if bad_ref:
 grid_total = sum(expected.values())
 ok("マトリクス計の理論値 = 商品×類型の行数", grid_total, len(pairs_expected))
 
+# ---- 4b. 商品×年齢層 と ニーズ×年齢層 ---------------------------------------
+wsB = wb["商品×年齢層"]
+band_expected = [(PURPS[p["primaryNeed"]], BAND[b]["label"]) for p in P for b in p["ageBands"]]
+BAND_LAST = len(band_expected) + 1
+ok("商品×年齢層の最終行", wsB.max_row, BAND_LAST)
+band_actual = [(wsB.cell(r, 4).value, wsB.cell(r, 5).value) for r in range(2, BAND_LAST + 1)]
+ok("商品×年齢層の中身", Counter(band_actual), Counter(band_expected))
+
+wsN = wb["ニーズ×年齢層"]
+band_labels_in_source = {wsB.cell(r, 5).value for r in range(2, BAND_LAST + 1)}
+# 行 1 は COUNTIFS の判定値そのもの。'商品×年齢層' E 列の値と完全一致していなければ
+# 全セルが 0 を返す（エラーにならないので数式検査だけでは気づけない）。
+for j, b in enumerate(BANDS, start=2):
+    hdr = wsN.cell(1, j).value
+    ok(f"ニーズ×年齢層の判定行見出し[{j}]", hdr, b["label"])
+    checks += 1
+    if hdr not in band_labels_in_source:
+        fails.append(f"判定値 {hdr!r} が '商品×年齢層' E 列に存在しない（全セル 0 になる）")
+    ok(f"ニーズ×年齢層の呼称行[{j}]", wsN.cell(2, j).value, b["sub"])
+
+bad_nb = 0
+for i, n in enumerate(PURP_LIST):
+    row = i + 3
+    ok(f"ニーズ行見出し[{row}]", wsN.cell(row, 1).value, n["label"])
+    for j, b in enumerate(BANDS, start=2):
+        f = wsN.cell(row, j).value
+        want = (f"=COUNTIFS('商品×年齢層'!$D$2:$D${BAND_LAST},$A{row},"
+                f"'商品×年齢層'!$E$2:$E${BAND_LAST},{wsN.cell(1, j).column_letter}$1)")
+        if f != want:
+            bad_nb += 1
+            fails.append(f"ニーズ×年齢層 {wsN.cell(row, j).coordinate} の数式が想定外: {f}")
+checks += 1
+if bad_nb:
+    fails.append(f"ニーズ×年齢層の COUNTIFS 参照崩れ {bad_nb} 件")
+
+# 主ニーズ側の判定値（A 列）も同様に突き合わせる
+need_labels_in_source = {wsB.cell(r, 4).value for r in range(2, BAND_LAST + 1)}
+for i, n in enumerate(PURP_LIST):
+    checks += 1
+    if n["label"] not in need_labels_in_source and any(p["primaryNeed"] == n["id"] for p in P):
+        fails.append(f"主ニーズ判定値 {n['label']!r} が '商品×年齢層' D 列に存在しない")
+
 # ---- 5. 凡例シートの集計数式 ------------------------------------------------
 wsI = wb["凡例・注意"]
 found = {}
@@ -115,9 +170,9 @@ for row in wsI.iter_rows():
 for label, frag in [
     ("収録商品数", f"COUNTA(商品一覧!$A$2:$A${LAST})"),
     ("引受会社数（重複除く）", f"商品一覧!$B$2:$B${LAST}"),
-    ("裏側の証券会社を特定した商品数", f"COUNTA(商品一覧!$Q$2:$Q${LAST})"),
+    ("裏側の証券会社を特定した商品数", f"COUNTA(商品一覧!$S$2:$S${LAST})"),
     ("指数連動商品数", f'COUNTIF(商品一覧!$K$2:$K${LAST},"●")'),
-    ("確度「確認済」の商品数", f'COUNTIF(商品一覧!$X$2:$X${LAST},"確認済")'),
+    ("確度「確認済」の商品数", f'COUNTIF(商品一覧!$Z$2:$Z${LAST},"確認済")'),
 ]:
     checks += 1
     if label not in found:
@@ -135,7 +190,13 @@ print(f"  裏側の証券会社を特定 {sum(1 for p in P if p['counterparty'][
 print(f"  指数連動 {sum(1 for p in P if p['indexLinked'])} 商品")
 print(f"  確認済 {sum(1 for p in P if p['confidence'] == 'confirmed')} / "
       f"要確認 {sum(1 for p in P if p['confidence'] != 'confirmed')}")
-print(f"  マトリクス総計 {grid_total}")
+print(f"  会社×類型マトリクス総計 {grid_total}")
+print(f"  ニーズ×年齢層マトリクス総計 {len(band_expected)}")
+for n in PURP_LIST:
+    cells = " ".join(
+        f"{sum(1 for p in P if p['primaryNeed'] == n['id'] and b['id'] in p['ageBands']) or '・':>3}"
+        for b in BANDS)
+    print(f"    {n['label']:<14}{cells}   計 {sum(1 for p in P if p['primaryNeed'] == n['id'])}")
 
 print(f"\n{checks} 件の検査")
 if fails:

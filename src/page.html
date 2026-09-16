@@ -126,6 +126,8 @@
   .t.idx{border-color:var(--flag);color:var(--flag);background:var(--flag-soft)}
   .t.cp{border-color:var(--flag);color:var(--flag);background:var(--flag-soft);font-weight:500}
   .t.ok{border-color:var(--ok);color:var(--ok);background:var(--ok-soft)}
+  .t.need{border-color:var(--accent);color:var(--accent-ink);background:var(--accent);font-weight:500}
+  .t.band{border-color:var(--line-strong);color:var(--ink);background:var(--surface-3);font-variant-numeric:tabular-nums}
   .t.chk{border-color:var(--warn);color:var(--warn);background:var(--warn-soft)}
 
   .detail{border-top:1px solid var(--line);background:var(--surface-2);padding:14px 13px;display:grid;gap:13px}
@@ -138,6 +140,15 @@
   .pill-list{display:flex;flex-wrap:wrap;gap:4px}
   .pill{font-size:11.5px;padding:1px 8px;border-radius:999px;background:var(--surface-3);color:var(--ink-2);border:1px solid var(--line)}
   .pill.pn{background:var(--accent-soft);border-color:var(--accent-line);color:var(--accent);font-weight:500}
+  .pill.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:500}
+  .pill.band{background:var(--surface);border-color:var(--line-strong);color:var(--ink)}
+  .pill.band .bsub{color:var(--ink-3);font-size:10.5px;margin-left:5px}
+  .pill.off{opacity:.42}
+  .bandbar{display:flex;gap:3px;margin-top:4px}
+  .bandbar i{flex:1;height:5px;border-radius:2px;background:var(--surface-3);border:1px solid var(--line)}
+  .bandbar i.on{background:var(--accent);border-color:var(--accent)}
+  td.cell{cursor:pointer}
+  td.cell:hover{outline:2px solid var(--accent);outline-offset:-2px}
   .cpbox{border:1px solid var(--flag);background:var(--flag-soft);border-radius:4px;padding:10px 12px;display:grid;gap:5px;font-size:12.5px}
   .cpbox .cph{font-family:var(--disp);font-weight:700;font-size:13px;color:var(--flag);display:flex;align-items:center;gap:7px}
   .cpbox .cpi{font-family:var(--mono);font-size:11.5px;color:var(--ink-2);word-break:break-word}
@@ -214,6 +225,7 @@
   <div class="wrap">
     <button class="vtab" id="tab-list" aria-selected="true" type="button">商品一覧<span class="n" id="n-list"></span></button>
     <button class="vtab" id="tab-matrix" aria-selected="false" type="button">会社 × 類型<span class="n">マトリクス</span></button>
+    <button class="vtab" id="tab-need" aria-selected="false" type="button">ニーズ × 年齢層<span class="n">マトリクス</span></button>
     <button class="vtab" id="tab-cp" aria-selected="false" type="button">裏側の証券会社<span class="n" id="n-cp"></span></button>
   </div>
 </nav>
@@ -225,6 +237,8 @@
       <label style="font-size:12px;color:var(--ink-2)">並び順
         <select class="groupsel" id="groupby">
           <option value="category">商品類型ごと</option>
+          <option value="need">主ニーズごと</option>
+          <option value="band">対象年齢層ごと</option>
           <option value="insurer">引受会社ごと</option>
         </select>
       </label>
@@ -247,6 +261,14 @@
         <p class="rescount">引受会社 × 商品類型の取扱マトリクス（現在の絞り込みを反映・数字は商品数）</p>
       </div>
       <div class="scrollx"><table id="matrix"></table></div>
+    </div>
+
+    <div id="pane-need" class="hidden">
+      <div class="resbar">
+        <p class="rescount">主ニーズ × 対象年齢層（現在の絞り込みを反映・数字は商品数）。セルをクリックすると、その組み合わせで一覧を絞り込みます。</p>
+      </div>
+      <div class="scrollx"><table id="needmx"></table></div>
+      <p class="none-note" style="margin-top:14px">「対象年齢層」は、払方・商品構造・主たる販売目的から本表が分類した<strong>主に想定される顧客層</strong>であり、各社が公表する契約可能年齢そのものではありません。公表の契約可能年齢は各商品の詳細「契約年齢」欄にあり、確認できたものだけ値が入っています。「主ニーズ」も、複数該当するニーズのうち商品設計上の主目的を 1 つ選んだものです。</p>
     </div>
 
     <div id="pane-cp" class="hidden">
@@ -273,12 +295,15 @@
   "use strict";
   var DB = JSON.parse(document.getElementById("payload").textContent);
   var CATS = DB.taxonomies.categories, CHANS = DB.taxonomies.channels, PURPS = DB.taxonomies.purposes;
+  var BANDS = DB.taxonomies.ageBands;
   var P = DB.products;
 
   var catById = {}, chanById = {}, purpById = {};
   CATS.forEach(function(c){catById[c.id]=c;});
   CHANS.forEach(function(c){chanById[c.id]=c;});
   PURPS.forEach(function(p){purpById[p.id]=p;});
+  var bandById = {};
+  BANDS.forEach(function(b){bandById[b.id]=b;});
 
   var INSURERS = [];
   P.forEach(function(p){ if(INSURERS.indexOf(p.insurer)<0) INSURERS.push(p.insurer); });
@@ -286,7 +311,7 @@
   var PAYS = ["一時払","平準払"];
 
   // ---------- state ----------
-  var S = { q:"", category:[], channel:[], purpose:[], pay:[], currency:[], insurer:[], special:[], groupby:"category" };
+  var S = { q:"", category:[], channel:[], purpose:[], need:[], ageBand:[], pay:[], currency:[], insurer:[], special:[], groupby:"category" };
 
   function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g,function(m){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m];}); }
   function payOf(p){ return PAYS.filter(function(x){ return p.payment.indexOf(x)>=0; }); }
@@ -295,6 +320,8 @@
     if(S.category.length && !p.categories.some(function(c){return S.category.indexOf(c)>=0;})) return false;
     if(S.channel.length && !p.channels.some(function(c){return S.channel.indexOf(c)>=0;})) return false;
     if(S.purpose.length && !p.purposes.some(function(c){return S.purpose.indexOf(c)>=0;})) return false;
+    if(S.need.length && S.need.indexOf(p.primaryNeed)<0) return false;
+    if(S.ageBand.length && !p.ageBands.some(function(c){return S.ageBand.indexOf(c)>=0;})) return false;
     if(S.pay.length && !payOf(p).some(function(c){return S.pay.indexOf(c)>=0;})) return false;
     if(S.currency.length && !p.currencies.some(function(c){return S.currency.indexOf(c)>=0;})) return false;
     if(S.insurer.length && S.insurer.indexOf(p.insurer)<0) return false;
@@ -303,6 +330,7 @@
     if(S.special.indexOf("ok")>=0 && p.confidence!=="confirmed") return false;
     if(S.q){
       var hay = [p.insurer,p.group,p.officialName,p.summary,p.petNames.join(" "),p.distributors.join(" "),
+                 p.ageBands.map(function(b){return bandById[b].label;}).join(" "),
                  p.counterparty.name,p.counterparty.index,p.counterparty.role,p.rate.value,p.rate.note,p.ageRange].join(" ").toLowerCase();
       if(hay.indexOf(S.q.toLowerCase())<0) return false;
     }
@@ -312,7 +340,7 @@
   // ---------- facets ----------
   function facet(key, title, items){
     var sel = S[key];
-    var open = key==="category" || key==="special";
+    var open = key==="special" || key==="ageBand" || key==="need";
     var h = '<details class="facet"'+(open?" open":"")+'><summary>'+esc(title)+
             '<span class="cnt'+(sel.length?" on":"")+'">'+(sel.length?sel.length+" 選択":"すべて")+'</span></summary><div class="facet-body">';
     items.forEach(function(it){
@@ -348,15 +376,28 @@
     });
     h += facet("pay","払方", PAYS.map(function(x){return {id:x,label:x,n:nPa[x]||0};}));
     h += facet("currency","通貨", CURRS.map(function(x){return {id:x,label:x,n:nCu[x]||0};}));
+    var nBa = countBy(function(p){return p.ageBands;});
+    var nNe = countBy(function(p){return [p.primaryNeed];});
+    h += facet("ageBand","対象年齢層", BANDS.map(function(b){return {id:b.id,label:b.label,n:nBa[b.id]||0};}));
+    h += facet("need","主ニーズ（商品設計上の主目的）", PURPS.map(function(c){return {id:c.id,label:c.label,n:nNe[c.id]||0};}));
     h += facet("channel","販売チャネル", CHANS.map(function(c){return {id:c.id,label:c.label,n:nCh[c.id]||0};}));
-    h += facet("purpose","目的・ニーズ", PURPS.map(function(c){return {id:c.id,label:c.label,n:nPu[c.id]||0};}));
+    h += facet("purpose","適するニーズ（該当するすべて）", PURPS.map(function(c){return {id:c.id,label:c.label,n:nPu[c.id]||0};}));
     h += facet("insurer","引受会社", INSURERS.map(function(x){return {id:x,label:x,n:nIn[x]||0};}));
     document.getElementById("facets").innerHTML = h;
   }
 
   // ---------- rows ----------
+  function bandSpan(p){
+    var first = bandById[p.ageBands[0]].label, last = bandById[p.ageBands[p.ageBands.length-1]].label;
+    if(p.ageBands.length === 1) return first;
+    // 帯は連続なので、両端だけで範囲として読める（〜39歳 / 40〜54 / 55〜64 / 65〜74 / 75歳〜）
+    return first.replace(/歳〜$/,"歳").replace(/^〜/,"〜") + "〜" + last.replace(/^〜/,"");
+  }
+
   function tagsFor(p){
     var t = "";
+    t += '<span class="t need">'+esc(purpById[p.primaryNeed].label)+'</span>';
+    t += '<span class="t band">'+esc(bandSpan(p))+'</span>';
     payOf(p).forEach(function(x){ t += '<span class="t pay">'+esc(x)+'</span>'; });
     p.currencies.forEach(function(c){ t += '<span class="t cur">'+esc(c)+'</span>'; });
     if(p.indexLinked) t += '<span class="t idx">指数連動</span>';
@@ -383,8 +424,16 @@
          (p.petNames.length>1?'<div style="font-size:11.5px;color:var(--ink-3);margin-top:3px">同一商品・同一シリーズの別名称／世代違い／販売会社別の販売名称を含む</div>':'')+'</dd>';
     h += '<dt>販売チャネル</dt><dd><div class="pill-list">'+p.channels.map(function(c){return '<span class="pill">'+esc(chanById[c].label)+'</span>';}).join("")+'</div></dd>';
     h += '<dt>取扱会社</dt><dd>'+esc(p.distributors.join(" ／ "))+'</dd>';
-    h += '<dt>目的・ニーズ</dt><dd><div class="pill-list">'+p.purposes.map(function(c){return '<span class="pill">'+esc(purpById[c].label)+'</span>';}).join("")+'</div></dd>';
-    h += '<dt>契約年齢</dt><dd>'+(p.ageRange?esc(p.ageRange):'<span style="color:var(--ink-3)">公表情報では未確認（交付書面で要確認）</span>')+'</dd>';
+    h += '<dt>適するニーズ</dt><dd><div class="pill-list">'+p.purposes.map(function(c){
+           return '<span class="pill'+(c===p.primaryNeed?" primary":"")+'">'+esc(purpById[c].label)+(c===p.primaryNeed?"（主）":"")+'</span>';
+         }).join("")+'</div></dd>';
+    h += '<dt>対象年齢層</dt><dd><div class="pill-list">'+BANDS.map(function(b){
+           var on = p.ageBands.indexOf(b.id)>=0;
+           return '<span class="pill band'+(on?"":" off")+'">'+esc(b.label)+'<span class="bsub">'+esc(b.sub)+'</span></span>';
+         }).join("")+'</div>'+
+         '<div class="bandbar">'+BANDS.map(function(b){return '<i class="'+(p.ageBands.indexOf(b.id)>=0?"on":"")+'"></i>';}).join("")+'</div>'+
+         '<div style="font-size:11.5px;color:var(--ink-3);margin-top:4px">払方・商品構造・主目的からの本表の分類。公表の契約可能年齢は下段。</div></dd>';
+    h += '<dt>契約年齢</dt><dd>'+(p.ageRange?'<strong>'+esc(p.ageRange)+'</strong>':'<span style="color:var(--ink-3)">公表情報では未確認（交付書面で要確認）</span>')+'</dd>';
     h += '<dt>引受会社</dt><dd><strong>'+esc(p.insurer)+'</strong>　<span style="color:var(--ink-3)">'+esc(p.group)+'</span></dd>';
     h += '</dl>';
 
@@ -422,6 +471,16 @@
         var items = list.filter(function(p){ return p.categories.indexOf(c.id)>=0; });
         if(items.length) groups.push({key:c.id,label:c.label,note:c.note,items:items});
       });
+    } else if(S.groupby==="need"){
+      PURPS.forEach(function(n){
+        var items = list.filter(function(p){ return p.primaryNeed===n.id; });
+        if(items.length) groups.push({key:n.id,label:n.label,note:n.note||null,items:items});
+      });
+    } else if(S.groupby==="band"){
+      BANDS.forEach(function(b){
+        var items = list.filter(function(p){ return p.ageBands.indexOf(b.id)>=0; });
+        if(items.length) groups.push({key:b.id,label:b.label+"（"+b.sub+"）",note:b.note,items:items});
+      });
     } else {
       INSURERS.forEach(function(ins){
         var items = list.filter(function(p){ return p.insurer===ins; });
@@ -458,6 +517,28 @@
     document.getElementById("matrix").innerHTML = h;
   }
 
+  function renderNeedMatrix(list){
+    var h = '<thead><tr><th>主ニーズ＼対象年齢層</th>';
+    BANDS.forEach(function(b){ h += '<th class="rot">'+esc(b.label)+'<br><span style="font-weight:400;color:var(--ink-3)">'+esc(b.sub)+'</span></th>'; });
+    h += '<th class="rot">計</th></tr></thead><tbody>';
+    PURPS.forEach(function(n){
+      var mine = list.filter(function(p){ return p.primaryNeed===n.id; });
+      if(!mine.length && !S.need.length && !S.ageBand.length && !S.q && !list.length) return;
+      h += '<tr><th>'+esc(n.label)+'</th>';
+      BANDS.forEach(function(b){
+        var c = mine.filter(function(p){ return p.ageBands.indexOf(b.id)>=0; }).length;
+        h += '<td class="'+(c?(c>2?"has cell":"has l1 cell"):"cell")+'" data-need="'+esc(n.id)+'" data-band="'+esc(b.id)+'">'+(c||"·")+'</td>';
+      });
+      h += '<td>'+mine.length+'</td></tr>';
+    });
+    h += '<tr><th>計</th>';
+    BANDS.forEach(function(b){
+      h += '<td>'+list.filter(function(p){ return p.ageBands.indexOf(b.id)>=0; }).length+'</td>';
+    });
+    h += '<td>'+list.length+'</td></tr></tbody>';
+    document.getElementById("needmx").innerHTML = h;
+  }
+
   function renderCP(){
     var list = P.filter(function(p){return p.counterparty.present;});
     document.getElementById("cpcards").innerHTML = list.map(function(p){
@@ -479,7 +560,9 @@
     if(S.q) bits.push('検索「'+S.q+'」');
     [["category",CATS.reduce(function(a,c){a[c.id]=c.label;return a;},{})],
      ["channel",CHANS.reduce(function(a,c){a[c.id]=c.label;return a;},{})],
-     ["purpose",PURPS.reduce(function(a,c){a[c.id]=c.label;return a;},{})]].forEach(function(pair){
+     ["purpose",PURPS.reduce(function(a,c){a[c.id]=c.label;return a;},{})],
+     ["need",PURPS.reduce(function(a,c){a[c.id]="主ニーズ:"+c.label;return a;},{})],
+     ["ageBand",BANDS.reduce(function(a,c){a[c.id]=c.label;return a;},{})]].forEach(function(pair){
       if(S[pair[0]].length) bits.push(S[pair[0]].map(function(v){return pair[1][v];}).join("・"));
     });
     ["pay","currency","insurer"].forEach(function(k){ if(S[k].length) bits.push(S[k].join("・")); });
@@ -496,6 +579,7 @@
     document.getElementById("n-list").textContent = list.length + " 件";
     renderList(list);
     renderMatrix(list);
+    renderNeedMatrix(list);
     activeBits();
   }
 
@@ -515,20 +599,26 @@
   document.getElementById("q").addEventListener("input", function(e){ S.q = e.target.value.trim(); render(); });
   document.getElementById("groupby").addEventListener("change", function(e){ S.groupby = e.target.value; render(); });
   document.getElementById("clear").addEventListener("click", function(){
-    S.q=""; S.category=[]; S.channel=[]; S.purpose=[]; S.pay=[]; S.currency=[]; S.insurer=[]; S.special=[];
+    S.q=""; S.category=[]; S.channel=[]; S.purpose=[]; S.need=[]; S.ageBand=[]; S.pay=[]; S.currency=[]; S.insurer=[]; S.special=[];
     document.getElementById("q").value=""; renderFacets(); render();
   });
 
-  var tabs = {list:"pane-list", matrix:"pane-matrix", cp:"pane-cp"};
+  var tabs = {list:"pane-list", matrix:"pane-matrix", need:"pane-need", cp:"pane-cp"};
   function showTab(name){
     Object.keys(tabs).forEach(function(k){
       document.getElementById("tab-"+k).setAttribute("aria-selected", String(k===name));
       document.getElementById(tabs[k]).classList.toggle("hidden", k!==name);
     });
     document.getElementById("rail").classList.toggle("hidden", name==="cp");
+    window.scrollTo({top:0, behavior:"auto"});
   }
   Object.keys(tabs).forEach(function(k){
     document.getElementById("tab-"+k).addEventListener("click", function(){ showTab(k); });
+  });
+  document.getElementById("needmx").addEventListener("click", function(e){
+    var td = e.target.closest("td.cell"); if(!td) return;
+    S.need = [td.dataset.need]; S.ageBand = [td.dataset.band];
+    renderFacets(); render(); showTab("list");
   });
   document.getElementById("cpcards").addEventListener("click", function(e){
     var a = e.target.closest("a[data-jump]"); if(!a) return;
