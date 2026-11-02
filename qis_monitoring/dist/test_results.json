@@ -1,0 +1,672 @@
+{
+ "run_at": "2026-11-02 04:24",
+ "total": 83,
+ "passed": 83,
+ "failed": 0,
+ "tests": [
+  {
+   "id": "T01-1",
+   "scenario": "NAV下落",
+   "check": "F001 週次リターン（TR）",
+   "expected": "-0.0279993",
+   "actual": "-0.0279993",
+   "result": "PASS"
+  },
+  {
+   "id": "T01-2",
+   "scenario": "NAV下落",
+   "check": "F001 月次リターン（TR）",
+   "expected": "-0.053029",
+   "actual": "-0.053029",
+   "result": "PASS"
+  },
+  {
+   "id": "T01-3F002",
+   "scenario": "NAV下落",
+   "check": "F002 週次リターン（分配金調整後 TR）",
+   "expected": "-0.0159346",
+   "actual": "-0.0159346",
+   "result": "PASS"
+  },
+  {
+   "id": "T01-3F003",
+   "scenario": "NAV下落",
+   "check": "F003 週次リターン（分配金調整後 TR）",
+   "expected": "-0.012",
+   "actual": "-0.012",
+   "result": "PASS"
+  },
+  {
+   "id": "T01-3F004",
+   "scenario": "NAV下落",
+   "check": "F004 週次リターン（分配金調整後 TR）",
+   "expected": "-0.00202834",
+   "actual": "-0.00202834",
+   "result": "PASS"
+  },
+  {
+   "id": "T01-3F005",
+   "scenario": "NAV下落",
+   "check": "F005 週次リターン（分配金調整後 TR）",
+   "expected": "-0.0100402",
+   "actual": "-0.0100402",
+   "result": "PASS"
+  },
+  {
+   "id": "T01-4",
+   "scenario": "NAV下落",
+   "check": "F004 現在ドローダウン（TR）",
+   "expected": "-0.139581",
+   "actual": "-0.139581",
+   "result": "PASS"
+  },
+  {
+   "id": "T01-5",
+   "scenario": "NAV下落",
+   "check": "F001 実現Vol（26週・年率）",
+   "expected": "0.0859702",
+   "actual": "0.0859702",
+   "result": "PASS"
+  },
+  {
+   "id": "T02-F001",
+   "scenario": "NAV不一致",
+   "check": "F001 NAV照合結果",
+   "expected": "MATCH",
+   "actual": "MATCH",
+   "result": "PASS"
+  },
+  {
+   "id": "T02-F002",
+   "scenario": "NAV不一致",
+   "check": "F002 NAV照合結果",
+   "expected": "MISMATCH",
+   "actual": "MISMATCH",
+   "result": "PASS"
+  },
+  {
+   "id": "T02-F003",
+   "scenario": "NAV不一致",
+   "check": "F003 NAV照合結果",
+   "expected": "WARNING",
+   "actual": "WARNING",
+   "result": "PASS"
+  },
+  {
+   "id": "T02-F004",
+   "scenario": "NAV不一致",
+   "check": "F004 NAV照合結果",
+   "expected": "DATE DIFFERENCE",
+   "actual": "DATE DIFFERENCE",
+   "result": "PASS"
+  },
+  {
+   "id": "T02-F005",
+   "scenario": "NAV不一致",
+   "check": "F005 NAV照合結果",
+   "expected": "MISSING DATA",
+   "actual": "MISSING DATA",
+   "result": "PASS"
+  },
+  {
+   "id": "T01-6",
+   "scenario": "NAV下落",
+   "check": "F001 週次NAV下落アラート＝High",
+   "expected": "High",
+   "actual": "High",
+   "result": "PASS"
+  },
+  {
+   "id": "T01-7",
+   "scenario": "NAV下落",
+   "check": "F001 月次NAV下落アラート＝High",
+   "expected": "High",
+   "actual": "High",
+   "result": "PASS"
+  },
+  {
+   "id": "T01-8",
+   "scenario": "NAV下落",
+   "check": "F004 ドローダウン拡大アラート＝Medium",
+   "expected": "Medium",
+   "actual": "Medium",
+   "result": "PASS"
+  },
+  {
+   "id": "T02-6",
+   "scenario": "NAV不一致",
+   "check": "F002 NAV不一致アラート＝High",
+   "expected": "High",
+   "actual": "High",
+   "result": "PASS"
+  },
+  {
+   "id": "T02-7",
+   "scenario": "NAV不一致",
+   "check": "F004 日付ずれは差額アラートを出さず『照合不能』",
+   "expected": "('Medium', None)",
+   "actual": "('Medium', None)",
+   "result": "PASS"
+  },
+  {
+   "id": "T03-1",
+   "scenario": "新規ポジション",
+   "check": "NDX 01/15/27 P19000 → New",
+   "expected": "New",
+   "actual": "New",
+   "result": "PASS"
+  },
+  {
+   "id": "T03-2",
+   "scenario": "新規ポジション",
+   "check": "NDX 11/04/26 C21000 → New（CALL 判定）",
+   "expected": "('New', 'CALL')",
+   "actual": "('New', 'CALL')",
+   "result": "PASS"
+  },
+  {
+   "id": "T03-3",
+   "scenario": "新規ポジション",
+   "check": "全銘柄の分類が独立計算と一致",
+   "expected": "{'NDX US 11/06/26 P19600 Index': 'Closed', 'NDX US 12/18/26 P18500 Index': 'Unchanged', 'NDX US 11/20/26 P19500 Index': 'Increased', 'NDX US 11/04/26 C21000 Index': 'New', 'NDX US 12/18/26 P20200 Index': 'Unchanged', 'NDX US 10/30/26 P19800 Index': 'Expired', 'NDX US 01/15/27 P19000 Index': 'New'}",
+   "actual": "{'NDX US 10/30/26 P19800 Index': 'Expired', 'NDX US 11/06/26 P19600 Index': 'Closed', 'NDX US 11/20/26 P19500 Index': 'Increased', 'NDX US 12/18/26 P20200 Index': 'Unchanged', 'NDX US 12/18/26 P18500 Index': 'Unchanged', 'NDX US 01/15/27 P19000 Index': 'New', 'NDX US 11/04/26 C21000 Index': 'New'}",
+   "result": "PASS"
+  },
+  {
+   "id": "T04-1",
+   "scenario": "ポジション解消",
+   "check": "NDX 11/06/26 P19600 → Closed",
+   "expected": "Closed",
+   "actual": "Closed",
+   "result": "PASS"
+  },
+  {
+   "id": "T04-2",
+   "scenario": "ポジション解消",
+   "check": "NDX 10/30/26 P19800 → Expired（満期到来）",
+   "expected": "Expired",
+   "actual": "Expired",
+   "result": "PASS"
+  },
+  {
+   "id": "T04-3",
+   "scenario": "ポジション解消",
+   "check": "解消＋新満期の新規 → Possible Roll（推定）",
+   "expected": "('Possible Roll (旧側)', 'Possible Roll (新規側)')",
+   "actual": "('Possible Roll (旧側)', 'Possible Roll (新規側)')",
+   "result": "PASS"
+  },
+  {
+   "id": "T04-4",
+   "scenario": "ポジション解消",
+   "check": "Call の新規はロール候補にしない（Put/Call 別グループ）",
+   "expected": "None",
+   "actual": "None",
+   "result": "PASS"
+  },
+  {
+   "id": "T04-5",
+   "scenario": "ポジション解消",
+   "check": "同一銘柄2取引（open_date 別）の集約：P18500 前回/今回 Notional",
+   "expected": "(40000000, 40000000)",
+   "actual": "(40000000, 40000000)",
+   "result": "PASS"
+  },
+  {
+   "id": "T05-1",
+   "scenario": "Strike接近",
+   "check": "IDX_NDXPW Nearest Strike Distance",
+   "expected": "0.0074813",
+   "actual": "0.0074813",
+   "result": "PASS"
+  },
+  {
+   "id": "T05-2",
+   "scenario": "Strike接近",
+   "check": "OTM→ITM 変化銘柄",
+   "expected": "['NDX US 12/18/26 P20200 Index']",
+   "actual": "['NDX US 12/18/26 P20200 Index']",
+   "result": "PASS"
+  },
+  {
+   "id": "T05-3",
+   "scenario": "Strike接近",
+   "check": "Strike接近（3%以内）＝High、5%ルールは抑制",
+   "expected": "('High', None)",
+   "actual": "('High', None)",
+   "result": "PASS"
+  },
+  {
+   "id": "T05-4",
+   "scenario": "Strike接近",
+   "check": "ITMへの変化アラート＝High",
+   "expected": "High",
+   "actual": "High",
+   "result": "PASS"
+  },
+  {
+   "id": "T05-5",
+   "scenario": "Strike接近",
+   "check": "IDX_NDXPS（最接近 5.24%）は Strike アラートなし",
+   "expected": "False",
+   "actual": "False",
+   "result": "PASS"
+  },
+  {
+   "id": "T05-6",
+   "scenario": "Strike接近",
+   "check": "最短満期までの営業日数（休日考慮）",
+   "expected": "3",
+   "actual": "3",
+   "result": "PASS"
+  },
+  {
+   "id": "T05-7",
+   "scenario": "Strike接近",
+   "check": "満期接近（3営業日以内）＝Medium、30日ルールは抑制",
+   "expected": "('Medium', None)",
+   "actual": "('Medium', None)",
+   "result": "PASS"
+  },
+  {
+   "id": "T05-8",
+   "scenario": "Strike接近",
+   "check": "加重平均IV変化（|Notional|加重）",
+   "expected": "0.0443636",
+   "actual": "0.0443636",
+   "result": "PASS"
+  },
+  {
+   "id": "T05-9",
+   "scenario": "Strike接近",
+   "check": "Gamma×Notional 変化率（参考値）",
+   "expected": "0.508532",
+   "actual": "0.508532",
+   "result": "PASS"
+  },
+  {
+   "id": "T05-10",
+   "scenario": "Strike接近",
+   "check": "有効ポジション数・Gross Notional",
+   "expected": "(7, 165000000)",
+   "actual": "(7, 165000000)",
+   "result": "PASS"
+  },
+  {
+   "id": "T05-11",
+   "scenario": "Strike接近",
+   "check": "Greeks は単位確認前『参考値』表示",
+   "expected": "参考値（単位未確認）",
+   "actual": "参考値（単位未確認）",
+   "result": "PASS"
+  },
+  {
+   "id": "T05-12",
+   "scenario": "Strike接近",
+   "check": "前回ファイルの満期到来ポジション（10/30 満期 P19800）は今回の有効明細に含まれない",
+   "expected": "False",
+   "actual": "False",
+   "result": "PASS"
+  },
+  {
+   "id": "T06-1",
+   "scenario": "Vol Target Exposure縮小",
+   "check": "Exposure 変化率",
+   "expected": "-0.29661",
+   "actual": "-0.29661",
+   "result": "PASS"
+  },
+  {
+   "id": "T06-2",
+   "scenario": "Vol Target Exposure縮小",
+   "check": "Exposure急縮小＝High／実現Vol急上昇＝Medium",
+   "expected": "('High', 'Medium')",
+   "actual": "('High', 'Medium')",
+   "result": "PASS"
+  },
+  {
+   "id": "T06-3",
+   "scenario": "Vol Target Exposure縮小",
+   "check": "コメントに『観測』としての説明",
+   "expected": "True",
+   "actual": "True",
+   "result": "PASS"
+  },
+  {
+   "id": "T07-1",
+   "scenario": "Trendシグナル反転",
+   "check": "シグナル反転件数／L/S反転件数",
+   "expected": "(1, 1)",
+   "actual": "(1, 1)",
+   "result": "PASS"
+  },
+  {
+   "id": "T07-2",
+   "scenario": "Trendシグナル反転",
+   "check": "反転銘柄の特定",
+   "expected": "Equity:S&P500 E-mini(+0.60→-0.20)",
+   "actual": "Equity:S&P500 E-mini(+0.60→-0.20)",
+   "result": "PASS"
+  },
+  {
+   "id": "T07-3",
+   "scenario": "Trendシグナル反転",
+   "check": "加重Carry変化",
+   "expected": "-0.0108049",
+   "actual": "-0.0108049",
+   "result": "PASS"
+  },
+  {
+   "id": "T07-4",
+   "scenario": "Trendシグナル反転",
+   "check": "Trendシグナル反転＝Medium・Carry低下＝Low",
+   "expected": "('Medium', 'Low')",
+   "actual": "('Medium', 'Low')",
+   "result": "PASS"
+  },
+  {
+   "id": "T08-1",
+   "scenario": "Bloombergデータ欠損",
+   "check": "SX5E 欠損 → MISSING",
+   "expected": "MISSING",
+   "actual": "MISSING",
+   "result": "PASS"
+  },
+  {
+   "id": "T08-2",
+   "scenario": "Bloombergデータ欠損",
+   "check": "JGB10 As-of 10/28 → STALE（値は採用しない）",
+   "expected": "('STALE', None)",
+   "actual": "('STALE', None)",
+   "result": "PASS"
+  },
+  {
+   "id": "T08-3",
+   "scenario": "Bloombergデータ欠損",
+   "check": "QIS_TC 欠損 → F004 参照指数週次は空欄（前回値で代用しない）",
+   "expected": "None",
+   "actual": "None",
+   "result": "PASS"
+  },
+  {
+   "id": "T08-4",
+   "scenario": "Bloombergデータ欠損",
+   "check": "市場データ欠損アラート（IDX_TC）",
+   "expected": "Medium",
+   "actual": "Medium",
+   "result": "PASS"
+  },
+  {
+   "id": "T08-5",
+   "scenario": "Bloombergデータ欠損",
+   "check": "Add-in 未接続時の BDH は NO_CONN",
+   "expected": "NO_CONN",
+   "actual": "NO_CONN",
+   "result": "PASS"
+  },
+  {
+   "id": "T08-6",
+   "scenario": "Bloombergデータ欠損",
+   "check": "コメントに欠損の明示",
+   "expected": "True",
+   "actual": "True",
+   "result": "PASS"
+  },
+  {
+   "id": "T08-7",
+   "scenario": "Bloombergデータ欠損",
+   "check": "DQ16（重要市場データ欠損）＝OPEN",
+   "expected": "('NG', 'OPEN')",
+   "actual": "('NG', 'OPEN')",
+   "result": "PASS"
+  },
+  {
+   "id": "T09-1",
+   "scenario": "複数地銀・複数ファンド",
+   "check": "優先度一覧の行数（保有 7 件）",
+   "expected": "7",
+   "actual": "7",
+   "result": "PASS"
+  },
+  {
+   "id": "T09-2",
+   "scenario": "複数地銀・複数ファンド",
+   "check": "先頭は B銀行（NAV不一致・償還接近・接触超過）",
+   "expected": "('B銀行', 'High')",
+   "actual": "('B銀行', 'High')",
+   "result": "PASS"
+  },
+  {
+   "id": "T09-3",
+   "scenario": "複数地銀・複数ファンド",
+   "check": "Priority の内訳（High/Medium）",
+   "expected": "{'High': 4, 'Medium': 3}",
+   "actual": "{'High': 4, 'Medium': 3}",
+   "result": "PASS"
+  },
+  {
+   "id": "T09-4",
+   "scenario": "複数地銀・複数ファンド",
+   "check": "アラートの Investor に保有地銀を列挙",
+   "expected": "A銀行、D銀行",
+   "actual": "A銀行、D銀行",
+   "result": "PASS"
+  },
+  {
+   "id": "T09-5",
+   "scenario": "複数地銀・複数ファンド",
+   "check": "Fund-Index 1対多（F002 は 2 指数のアラートを持つ）",
+   "expected": "True",
+   "actual": "True",
+   "result": "PASS"
+  },
+  {
+   "id": "T09-6",
+   "scenario": "複数地銀・複数ファンド",
+   "check": "保有先なしファンド（F005）を DQ20 で検出",
+   "expected": "('NG', 'F005')",
+   "actual": "('NG', 'F005')",
+   "result": "PASS"
+  },
+  {
+   "id": "T10-1",
+   "scenario": "メール生成",
+   "check": "件名フォーマット",
+   "expected": "【QIS Weekly Update】担当先ファンド状況｜2026/11/02",
+   "actual": "【QIS Weekly Update】担当先ファンド状況｜2026/11/02",
+   "result": "PASS"
+  },
+  {
+   "id": "T10-2",
+   "scenario": "メール生成",
+   "check": "宛名・担当先（A銀行・B銀行）のみ記載",
+   "expected": "(True, True, True, False, False)",
+   "actual": "(True, True, True, False, False)",
+   "result": "PASS"
+  },
+  {
+   "id": "T10-3",
+   "scenario": "メール生成",
+   "check": "重大DQ未解決 → 本文冒頭に【要確認】・ステータス要確認",
+   "expected": "(True, True)",
+   "actual": "(True, True)",
+   "result": "PASS"
+  },
+  {
+   "id": "T10-4",
+   "scenario": "メール生成",
+   "check": "アラートのある先が上位（B銀行→A銀行の順）",
+   "expected": "True",
+   "actual": "True",
+   "result": "PASS"
+  },
+  {
+   "id": "T10-5",
+   "scenario": "メール生成",
+   "check": "必須セクションの存在",
+   "expected": "True",
+   "actual": "True",
+   "result": "PASS"
+  },
+  {
+   "id": "T10-6",
+   "scenario": "メール生成",
+   "check": "社内向け質問（（社内）〜）は顧客質問欄に出さない",
+   "expected": "False",
+   "actual": "False",
+   "result": "PASS"
+  },
+  {
+   "id": "T10-7",
+   "scenario": "メール生成",
+   "check": "顧客転送不可の注記",
+   "expected": "True",
+   "actual": "True",
+   "result": "PASS"
+  },
+  {
+   "id": "T10-8",
+   "scenario": "メール生成",
+   "check": "本文の長さ（1分で読める目安：3,000字以内）",
+   "expected": "True",
+   "actual": "True",
+   "result": "PASS"
+  },
+  {
+   "id": "H-1",
+   "scenario": "数式健全性",
+   "check": "全シートにエラー値（#VALUE! 等）がない（チャート補助の #N/A を除く）",
+   "expected": "0",
+   "actual": "0",
+   "result": "PASS"
+  },
+  {
+   "id": "V1-1",
+   "scenario": "同一ファイル再取込",
+   "check": "重複行を DQ11 で検出（Critical）",
+   "expected": "('NG', 18)",
+   "actual": "('NG', 18)",
+   "result": "PASS"
+  },
+  {
+   "id": "V1-2",
+   "scenario": "同一ファイル再取込",
+   "check": "メールは『要確認』",
+   "expected": "要確認",
+   "actual": "要確認",
+   "result": "PASS"
+  },
+  {
+   "id": "V2-1",
+   "scenario": "Bloomberg 未接続で BLOOMBERG モード",
+   "check": "全市場データが MISSING（手入力値・古い値を使わない）",
+   "expected": "True",
+   "actual": "True",
+   "result": "PASS"
+  },
+  {
+   "id": "V2-2",
+   "scenario": "Bloomberg 未接続で BLOOMBERG モード",
+   "check": "参照指数週次は全ファンド空欄",
+   "expected": "True",
+   "actual": "True",
+   "result": "PASS"
+  },
+  {
+   "id": "V2-3",
+   "scenario": "Bloomberg 未接続で BLOOMBERG モード",
+   "check": "NAV（公式）由来のリターンは影響なし",
+   "expected": "True",
+   "actual": "True",
+   "result": "PASS"
+  },
+  {
+   "id": "V3-1",
+   "scenario": "公式NAV欠損",
+   "check": "週次リターンは空欄（前週 NAV で代用しない）",
+   "expected": "None",
+   "actual": "None",
+   "result": "PASS"
+  },
+  {
+   "id": "V3-2",
+   "scenario": "公式NAV欠損",
+   "check": "DQ01 で検出",
+   "expected": "('NG', 'F001')",
+   "actual": "('NG', 'F001')",
+   "result": "PASS"
+  },
+  {
+   "id": "V3-3",
+   "scenario": "公式NAV欠損",
+   "check": "コメントは【データ欠損】を明示",
+   "expected": "True",
+   "actual": "True",
+   "result": "PASS"
+  },
+  {
+   "id": "V3-4",
+   "scenario": "公式NAV欠損",
+   "check": "公表予定日（WORKDAY+1）超過で NAV公表遅延アラート",
+   "expected": "True",
+   "actual": "True",
+   "result": "PASS"
+  },
+  {
+   "id": "V4-1",
+   "scenario": "DQ 承認",
+   "check": "Critical を Ack（確認者記入）→ メール『レビュー可』",
+   "expected": "('OK', 'レビュー可')",
+   "actual": "('OK', 'レビュー可')",
+   "result": "PASS"
+  },
+  {
+   "id": "V4-2",
+   "scenario": "DQ 承認",
+   "check": "本文の【要確認】行が消える",
+   "expected": "False",
+   "actual": "False",
+   "result": "PASS"
+  },
+  {
+   "id": "V5-1",
+   "scenario": "担当者切替",
+   "check": "佐藤 花子 → C銀行・E銀行のみ",
+   "expected": "(True, True, True, False, False)",
+   "actual": "(True, True, True, False, False)",
+   "result": "PASS"
+  },
+  {
+   "id": "V5-2",
+   "scenario": "担当者切替",
+   "check": "宛先メールアドレス",
+   "expected": "hanako.sato@example.com",
+   "actual": "hanako.sato@example.com",
+   "result": "PASS"
+  },
+  {
+   "id": "V6-1",
+   "scenario": "手動変更",
+   "check": "Override 列で優先度を変更・Reason に（手動変更）",
+   "expected": "('Low', True)",
+   "actual": "('Low', True)",
+   "result": "PASS"
+  },
+  {
+   "id": "V6-2",
+   "scenario": "手動変更",
+   "check": "Override したコメントが Final に反映",
+   "expected": "（テスト）手動修正したリスクコメント",
+   "actual": "（テスト）手動修正したリスクコメント",
+   "result": "PASS"
+  },
+  {
+   "id": "V7-1",
+   "scenario": "閾値変更",
+   "check": "週次下落閾値を -3% に変更 → F001（-2.80%）のアラートが消える",
+   "expected": "False",
+   "actual": "False",
+   "result": "PASS"
+  }
+ ]
+}

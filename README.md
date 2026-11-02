@@ -151,3 +151,9 @@ Excel を作り直したら `node build.mjs` も必ず流し直してくださ�
 `data/products.json` の `products` 配列に 1 オブジェクト追加し、`node build.mjs` を実行するだけです。
 `id` は一意、`categories` / `channels` / `purposes` は `taxonomies` の ID のみを使います。
 ビルドスクリプトは JSON をパースしてから差し込むため、壊れた JSON はビルド時に落ちます。
+
+---
+
+## 別プロジェクト：QIS Fund Monitoring & Weekly Sales Intelligence Workbook
+
+地銀担当営業向け QIS ファンド週次モニタリング用 Excel ブックは [`qis_monitoring/`](qis_monitoring/README.md) を参照。
