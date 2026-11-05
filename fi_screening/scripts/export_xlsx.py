@@ -97,8 +97,8 @@ def finish(ws, hdr_row, last_row, last_col):
 
 # ---------------------------------------------------------------- data
 uni = read("universe.csv")
-src = read("sources.csv")
-fin = read("financial_data.csv") + read("manual_financial.csv")
+src = read("sources.csv") + read("auto_sources.csv") + read("manual_sources.csv")
+fin = read("manual_financial.csv") + read("financial_data.csv") + read("auto_financial.csv")  # 先勝ち：手入力が優先
 pol = read("policy_evidence.csv")
 qual = read("qual_inputs.csv")
 sel = {r["fi_code"]: r for r in read("selection.csv")}
