@@ -1,0 +1,7 @@
+source_id,fi_code,doc_type,title,period,publisher,url,published_date,accessed_date,tier,basis,notes
+S-CHIGIN-LIST,ALL,協会会員名簿,全国地方銀行協会 地方銀行一覧,現在,全国地方銀行協会,https://www.chiginkyo.or.jp/regional_banks/list/,,2026-11-05,Tier2,,61行掲載
+S-DAINICHI-LIST,ALL,協会会員名簿,第二地方銀行協会 加盟地方銀行一覧,現在,第二地方銀行協会,https://www.dainichiginkyo.or.jp/membership/member_list.html,,2026-11-05,Tier2,,34行掲載
+S-ZENSHINKYO-LIST,ALL,協会会員名簿,全国信用金庫協会 全国の信用金庫のご紹介（地区別）,現在,全国信用金庫協会,https://www.shinkin.co.jp/tikubetu/,,2026-11-05,Tier2,,254金庫掲載（金融機関コード付）
+S-ZGK-KOBETSU-2025,ALL,業界団体統計,全国銀行協会 全国銀行財務諸表分析 2025年度決算 貸借対照表・損益計算書（行別・単体）,FY2025(2026/3期),全国銀行協会,https://www.zenginkyo.or.jp/fileadmin/res/abstract/stats/year2_02/account2025_terminal/kobetsu37.zip,2026-08-07,2026-11-05,Tier2,単体,単位: 百万円。行別の値は各行公表の財務諸表を全銀協が様式統一したもの
+S-ZGK-KOBETSU-2024,ALL,業界団体統計,全国銀行協会 全国銀行財務諸表分析 2024年度決算 貸借対照表・損益計算書（行別・単体）,FY2024(2025/3期),全国銀行協会,https://www.zenginkyo.or.jp/fileadmin/res/abstract/stats/year2_02/account2024_terminal/kobetsu36.zip,2025-08-01,2026-11-05,Tier2,単体,単位: 百万円。行別の値は各行公表の財務諸表を全銀協が様式統一したもの
+S-ZGK-KOBETSU-2023,ALL,業界団体統計,全国銀行協会 全国銀行財務諸表分析 2023年度決算 貸借対照表・損益計算書（行別・単体）,FY2023(2024/3期),全国銀行協会,https://www.zenginkyo.or.jp/fileadmin/res/abstract/stats/year2_02/account2023_terminal/kobetsu35.zip,2024-08-02,2026-11-05,Tier2,単体,単位: 百万円。行別の値は各行公表の財務諸表を全銀協が様式統一したもの
