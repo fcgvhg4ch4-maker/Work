@@ -3,9 +3,6 @@ fi_code,name,year,method,page,checks,total_matched,foreign_bond,foreign_equity,f
 0120,北都銀行,2025,期末残高表,26,国債+地方債+株式,171674.0,3618.0,0.0,,36208.0,True,True,https://www.fidea.co.jp/pdf/2026_03_data_123-183.pdf,5b8d997db8.pdf
 0121,荘内銀行,2024,期末残高表,25,国債+地方債+株式,315316.0,23652.0,0.0,,131203.0,True,True,https://www.fidea.co.jp/pdf/2026_03_data_62-122.pdf,c153cfd8c8.pdf
 0121,荘内銀行,2025,期末残高表,25,国債+地方債+株式,229347.0,14908.0,0.0,,99129.0,True,True,https://www.fidea.co.jp/pdf/2026_03_data_62-122.pdf,c153cfd8c8.pdf
-0122,山形銀行,2020,種類別期末残高表（内訳合計一致）,68,内訳合計,17382.0,,,,,False,False,https://www.yamagatabank.co.jp/investor/library/disclosure/img/d2201.pdf,33706d9b98.pdf
-0122,山形銀行,2021,種類別期末残高表（内訳合計一致）,73,内訳合計,18775.0,,,,,False,False,https://www.yamagatabank.co.jp/investor/library/disclosure/img/d2301.pdf,ab1d97a59e.pdf
-0122,山形銀行,2022,種類別期末残高表（内訳合計一致）,74,内訳合計,16488.0,,,,,False,False,https://www.yamagatabank.co.jp/investor/library/disclosure/img/d2401.pdf,8d951b6c85.pdf
 0123,岩手銀行,2023,期末残高表,30,国債+地方債+株式,1142176.0,115825.0,0.0,,276198.0,True,True,https://www.iwatebank.co.jp/assets/pdf/202503_tougoushiryo.pdf,effe02c883.pdf
 0123,岩手銀行,2024,期末残高表,30,国債+地方債+株式,1196970.0,124555.0,0.0,,285125.0,True,True,https://www.iwatebank.co.jp/assets/pdf/202503_tougoushiryo.pdf,effe02c883.pdf
 0123,岩手銀行,2025,期末残高表,19,国債+地方債+株式,1135606.0,,,133282.0,,False,False,https://www.iwatebank.co.jp/assets/pdf/shiryo260603_2.pdf,c549e945fb.pdf
@@ -14,37 +11,50 @@ fi_code,name,year,method,page,checks,total_matched,foreign_bond,foreign_equity,f
 0126,東邦銀行,2023,期末残高表,59,国債+地方債+株式,877748.0,25305.0,12.0,,147477.0,True,True,https://www.tohobank.co.jp/assets/pdf/company/ir/library/disclosure/2025/h_all.pdf,4fe61583c3.pdf
 0126,東邦銀行,2024,期末残高表,57,国債+地方債+株式,1207558.0,27949.0,8.0,,152138.0,True,True,https://www.tohobank.co.jp/assets/pdf/company/ir/library/disclosure/2026/h_all.pdf,8f547bb319.pdf
 0126,東邦銀行,2025,期末残高表,57,国債+地方債+株式,1394088.0,18546.0,8.0,,166713.0,True,True,https://www.tohobank.co.jp/assets/pdf/company/ir/library/disclosure/2026/h_all.pdf,8f547bb319.pdf
-0129,足利銀行,2016,種類別期末残高表（内訳合計一致）,119,内訳合計,2327801.0,,,,329911.0,True,True,https://www.mebuki-fg.co.jp/shareholder/pdf/ir_library/disclosure/2018_siryo.pdf,e2279f5cd5.pdf
-0129,足利銀行,2017,種類別期末残高表（内訳合計一致）,109,内訳合計,2400206.0,,,,411495.0,True,True,https://www.mebuki-fg.co.jp/shareholder/pdf/ir_library/disclosure/2019_siryo.pdf,ee702eb04b.pdf
-0129,足利銀行,2018,種類別期末残高表（内訳合計一致）,109,内訳合計,2506329.0,,,,450388.0,True,True,https://www.mebuki-fg.co.jp/shareholder/pdf/ir_library/disclosure/2020_siryo_02.pdf,b3cd37b530.pdf
-0129,足利銀行,2019,種類別期末残高表（内訳合計一致）,111,内訳合計,2323757.0,,,,379822.0,True,True,https://www.mebuki-fg.co.jp/shareholder/pdf/ir_library/disclosure/2021_siryo_02.pdf,3aab913ace.pdf
-0129,足利銀行,2020,種類別期末残高表（内訳合計一致）,114,内訳合計,2418116.0,,,,362912.0,True,True,https://www.mebuki-fg.co.jp/shareholder/pdf/ir_library/disclosure/2022_siryo.pdf,0b59755717.pdf
-0129,足利銀行,2021,種類別期末残高表（内訳合計一致）,123,内訳合計,2649069.0,,,,419661.0,True,True,https://www.mebuki-fg.co.jp/shareholder/pdf/ir_library/disclosure/2023_siryo_02.pdf,2e9ec2d9cb.pdf
-0129,足利銀行,2022,種類別期末残高表（内訳合計一致）,120,内訳合計,2003821.0,,,,381092.0,True,True,https://www.mebuki-fg.co.jp/shareholder/pdf/ir_library/disclosure/2024_siryo.pdf,a3f1557dbf.pdf
 0129,足利銀行,2023,期末残高表,202,国債+地方債+株式,1419771.0,380305.0,,,612133.0,True,True,https://www.mebuki-fg.co.jp/shareholder/pdf/ir_library/disclosure/2025_siryo.pdf,ce417f176f.pdf
 0129,足利銀行,2024,期末残高表,194,国債+地方債+株式,1531136.0,335514.0,,,554895.0,True,True,https://www.mebuki-fg.co.jp/shareholder/pdf/ir_library/disclosure/2026_siryo.pdf,2df96d1e55.pdf
 0129,足利銀行,2025,期末残高表,194,国債+地方債+株式,1417639.0,310863.0,,,487638.0,True,True,https://www.mebuki-fg.co.jp/shareholder/pdf/ir_library/disclosure/2026_siryo.pdf,2df96d1e55.pdf
-0130,常陽銀行,2016,種類別期末残高表（内訳合計一致）,119,内訳合計,2327801.0,,,,329911.0,True,True,https://www.mebuki-fg.co.jp/shareholder/pdf/ir_library/disclosure/2018_siryo.pdf,e2279f5cd5.pdf
-0130,常陽銀行,2017,種類別期末残高表（内訳合計一致）,109,内訳合計,2400206.0,,,,411495.0,True,True,https://www.mebuki-fg.co.jp/shareholder/pdf/ir_library/disclosure/2019_siryo.pdf,ee702eb04b.pdf
-0130,常陽銀行,2018,種類別期末残高表（内訳合計一致）,109,内訳合計,2506329.0,,,,450388.0,True,True,https://www.mebuki-fg.co.jp/shareholder/pdf/ir_library/disclosure/2020_siryo_02.pdf,b3cd37b530.pdf
-0130,常陽銀行,2019,種類別期末残高表（内訳合計一致）,111,内訳合計,2323757.0,,,,379822.0,True,True,https://www.mebuki-fg.co.jp/shareholder/pdf/ir_library/disclosure/2021_siryo_02.pdf,3aab913ace.pdf
-0130,常陽銀行,2020,種類別期末残高表（内訳合計一致）,114,内訳合計,2418116.0,,,,362912.0,True,True,https://www.mebuki-fg.co.jp/shareholder/pdf/ir_library/disclosure/2022_siryo.pdf,0b59755717.pdf
-0130,常陽銀行,2021,種類別期末残高表（内訳合計一致）,123,内訳合計,2649069.0,,,,419661.0,True,True,https://www.mebuki-fg.co.jp/shareholder/pdf/ir_library/disclosure/2023_siryo_02.pdf,2e9ec2d9cb.pdf
-0130,常陽銀行,2022,種類別期末残高表（内訳合計一致）,120,内訳合計,2003821.0,,,,381092.0,True,True,https://www.mebuki-fg.co.jp/shareholder/pdf/ir_library/disclosure/2024_siryo.pdf,a3f1557dbf.pdf
 0130,常陽銀行,2023,期末残高表,120,国債+地方債+株式,2706861.0,455707.0,0.0,,874485.0,True,True,https://www.mebuki-fg.co.jp/shareholder/pdf/ir_library/disclosure/2025_siryo.pdf,ce417f176f.pdf
 0130,常陽銀行,2024,期末残高表,116,国債+地方債+株式,2675045.0,462073.0,0.0,,897705.0,True,True,https://www.mebuki-fg.co.jp/shareholder/pdf/ir_library/disclosure/2026_siryo.pdf,2df96d1e55.pdf
 0130,常陽銀行,2025,期末残高表,116,国債+地方債+株式,2422116.0,499550.0,0.0,,935663.0,True,True,https://www.mebuki-fg.co.jp/shareholder/pdf/ir_library/disclosure/2026_siryo.pdf,2df96d1e55.pdf
+0149,静岡銀行,2023,期末残高表（原資料単位: 億円→百万円換算）,135,国債+地方債+株式,3334300.0,621500.0,44500.0,,1127200.0,True,True,https://www.shizuoka-fg.co.jp/pdf/ir/2025/shizuokafg_tougoureport_2025_appendix.pdf,50d79a81e9.pdf
+0149,静岡銀行,2024,期末残高表（原資料単位: 億円→百万円換算）,135,国債+地方債+株式,3324400.0,634600.0,94100.0,,1214100.0,True,True,https://www.shizuoka-fg.co.jp/pdf/ir/2025/shizuokafg_tougoureport_2025_appendix.pdf,50d79a81e9.pdf
 0150,スルガ銀行,2024,期末残高表,56,国債+地方債+株式,334690.0,7933.0,0.0,,,True,True,https://www.surugabank.co.jp/surugabank/investors/disclosure/pdf/dc_260731_02.pdf,6441667f54.pdf
 0150,スルガ銀行,2025,期末残高表,56,国債+地方債+株式,424717.0,7939.0,0.0,,,True,True,https://www.surugabank.co.jp/surugabank/investors/disclosure/pdf/dc_260731_02.pdf,6441667f54.pdf
 0151,清水銀行,2023,期末残高表,30,国債+地方債+株式,277120.0,13217.0,0.0,,63746.0,True,True,https://www.shimizubank.co.jp/assets/pdf/ir/disclosure/2025_all_02.pdf,a14459ef21.pdf
 0151,清水銀行,2024,期末残高表,30,国債+地方債+株式,263671.0,16129.0,0.0,,63076.0,True,True,https://www.shimizubank.co.jp/assets/pdf/ir/disclosure/2026_all_02.pdf,42856005b3.pdf
 0151,清水銀行,2025,期末残高表,30,国債+地方債+株式,268015.0,20775.0,0.0,,71547.0,True,True,https://www.shimizubank.co.jp/assets/pdf/ir/disclosure/2026_all_02.pdf,42856005b3.pdf
+0153,十六銀行,2023,残存期間別残高表,84,国債+地方債+株式,,149216.0,75.0,,,True,True,https://www.16fg.co.jp/ir/disclosure/files/tougou2024_07.pdf,c95d149a62.pdf
+0153,十六銀行,2024,残存期間別残高表,87,国債+地方債+株式,,124661.0,74.0,,,True,True,https://www.16fg.co.jp/ir/disclosure/files/tougou2025_07.pdf,bfe7154286.pdf
+0153,十六銀行,2025,残存期間別残高表,91,国債+地方債+株式,,110202.0,79.0,,,True,True,https://www.16fg.co.jp/ir/disclosure/files/tougou2026_07.pdf,1676f51d26.pdf
+0154,三十三銀行,2023,期末残高表,83,国債+地方債+株式,960512.0,155619.0,11.0,,275761.0,True,True,https://www.33fg.co.jp/profile/ir_library/disc/2025.3.pdf,3d6cabd814.pdf
+0154,三十三銀行,2024,期末残高表,85,国債+地方債+株式,952247.0,163586.0,11.0,,259899.0,True,True,https://www.33fg.co.jp/profile/ir_library/disc/2026.3.pdf,9d72b847d0.pdf
+0154,三十三銀行,2025,期末残高表,85,国債+地方債+株式,987095.0,170155.0,12.0,,250839.0,True,True,https://www.33fg.co.jp/profile/ir_library/disc/2026.3.pdf,9d72b847d0.pdf
+0161,池田泉州銀行,2023,期末残高表（原資料単位: 億円→百万円換算）,10,国債+地方債+株式,630600.0,,,0.0,109000.0,False,False,https://www.senshuikeda-hd.co.jp/ir/e-koukoku/ir_presentation/pdf/260602_02.pdf,e514887761.pdf
+0161,池田泉州銀行,2024,期末残高表（原資料単位: 億円→百万円換算）,10,国債+地方債+株式,704100.0,,,4600.0,92900.0,False,False,https://www.senshuikeda-hd.co.jp/ir/e-koukoku/ir_presentation/pdf/260602_02.pdf,e514887761.pdf
+0161,池田泉州銀行,2025,期末残高表（原資料単位: 億円→百万円換算）,10,国債+地方債+株式,854500.0,,,10000.0,108900.0,False,False,https://www.senshuikeda-hd.co.jp/ir/e-koukoku/ir_presentation/pdf/260602_02.pdf,e514887761.pdf
+0164,但馬銀行,2024,期末残高表,68,国債+地方債+株式,176019.0,,,,1416.0,False,False,https://www.tajimabank.co.jp/about/disclosure/pdf/disclose/disclose26/2026-disc.pdf,c9402e77ce.pdf
+0164,但馬銀行,2025,期末残高表,68,国債+地方債+株式,183944.0,,,,4116.0,False,False,https://www.tajimabank.co.jp/about/disclosure/pdf/disclose/disclose26/2026-disc.pdf,c9402e77ce.pdf
+0170,山口銀行,2024,期末残高表（原資料単位: 億円→百万円換算）,24,国債+地方債+株式,1357800.0,118100.0,0.0,,,True,True,https://www.ymfg.co.jp/ja/ir/library/integrated-report/COPY-202603/main/01/teaserItems2/0/linkList/03/link/202603_ymfg_f_yb.pdf,eee3ad3643.pdf
+0170,山口銀行,2025,期末残高表（原資料単位: 億円→百万円換算）,24,国債+地方債+株式,1339500.0,126900.0,0.0,,,True,True,https://www.ymfg.co.jp/ja/ir/library/integrated-report/COPY-202603/main/01/teaserItems2/0/linkList/03/link/202603_ymfg_f_yb.pdf,eee3ad3643.pdf
+0173,百十四銀行,2024,期末残高表,63,国債+地方債+株式,1191378.0,127208.0,0.0,,277317.0,True,True,https://www.114bank.co.jp/ir/disclosure/pdf/2026disclosure/all.pdf,6b73ad9507.pdf
+0173,百十四銀行,2025,期末残高表,63,国債+地方債+株式,1056408.0,112832.0,0.0,,215754.0,True,True,https://www.114bank.co.jp/ir/disclosure/pdf/2026disclosure/all.pdf,6b73ad9507.pdf
 0178,筑邦銀行,2023,期末残高表,52,国債+地方債+株式,221014.0,1298.0,0.0,,75891.0,True,True,https://www.chikugin.co.jp/uploads/cont/about/ir/2025/disc2025_all.pdf,cee17ceb28.pdf
 0178,筑邦銀行,2024,期末残高表,54,国債+地方債+株式,214945.0,789.0,0.0,,67768.0,True,True,https://www.chikugin.co.jp/uploads/cont/about/ir/2026/disc2026_all_02.pdf,cea7b98e1b.pdf
 0178,筑邦銀行,2025,期末残高表,54,国債+地方債+株式,218551.0,2168.0,0.0,,53147.0,True,True,https://www.chikugin.co.jp/uploads/cont/about/ir/2026/disc2026_all_02.pdf,cea7b98e1b.pdf
 0179,佐賀銀行,2024,残存期間別残高表,62,国債+地方債+株式,,132640.0,9.0,,,True,True,https://www.sagabank.co.jp/ir/files/disclosure/2025/all.pdf,d9adf931e6.pdf
 0179,佐賀銀行,2025,残存期間別残高表,61,国債+地方債+株式,,99675.0,10.0,,,True,True,https://www.sagabank.co.jp/ir/files/disclosure/2026/all.pdf,fdc47232d3.pdf
+0190,西日本シティ銀行,2024,期末残高表,92,国債+地方債+株式,1652704.0,296646.0,,,488559.0,True,False,https://www.nnfh.co.jp/assets/pdf/shareholder/ir/disclosure_chukandisclosure/disclo_202607/shiryou_all.pdf,098d84c233.pdf
+0190,西日本シティ銀行,2025,期末残高表,92,国債+地方債+株式,1854020.0,286350.0,,,516212.0,True,False,https://www.nnfh.co.jp/assets/pdf/shareholder/ir/disclosure_chukandisclosure/disclo_202607/shiryou_all.pdf,098d84c233.pdf
+0191,北九州銀行,2024,期末残高表（原資料単位: 億円→百万円換算）,22,国債+地方債+株式,47100.0,0.0,0.0,,,True,True,https://www.ymfg.co.jp/ja/ir/library/integrated-report/COPY-202603/main/01/teaserItems2/0/linkList/05/link/202603_ymfg_f_kb.pdf,b761876cdc.pdf
+0191,北九州銀行,2025,期末残高表（原資料単位: 億円→百万円換算）,22,国債+地方債+株式,44500.0,0.0,0.0,,,True,True,https://www.ymfg.co.jp/ja/ir/library/integrated-report/COPY-202603/main/01/teaserItems2/0/linkList/05/link/202603_ymfg_f_kb.pdf,b761876cdc.pdf
+0501,北洋銀行,2024,残存期間別残高表,54,国債+地方債+株式,,,,,,False,False,https://www.hokuyobank.co.jp/ir/library/h_image/disclosure/2025/03/data2025.pdf,45ae85d971.pdf
 0501,北洋銀行,2025,残存期間別残高表,57,国債+地方債+株式,,,,,,False,False,https://www.hokuyobank.co.jp/ir/library/h_image/disclosure/2026/03/data2026.pdf,a637775485.pdf
+0508,きらやか銀行,2024,期末残高表,1,国債+地方債+株式,110850.0,2702.0,0.0,,68199.0,True,True,https://www.jimoto-hd.co.jp/ir/library/disclosure/pdf/2026/03/202603h_p086-087.pdf,30e66bf35b.pdf
+0508,きらやか銀行,2025,期末残高表,1,国債+地方債+株式,114115.0,2563.0,0.0,,64863.0,True,True,https://www.jimoto-hd.co.jp/ir/library/disclosure/pdf/2026/03/202603h_p086-087.pdf,30e66bf35b.pdf
+0513,福島銀行,2023,期末残高表（原資料単位: 億円→百万円換算）,11,株式,155900.0,,,,,False,False,https://www.fukushimabank.co.jp/press/2026/img/20260513-001.pdf,32c053a64b.pdf
+0513,福島銀行,2024,期末残高表（原資料単位: 億円→百万円換算）,11,株式,161300.0,,,,,False,False,https://www.fukushimabank.co.jp/press/2026/img/20260513-001.pdf,32c053a64b.pdf
+0513,福島銀行,2025,期末残高表,12,国債+地方債+株式,161949.0,,,,62550.0,False,False,https://www.fukushimabank.co.jp/press/2026/img/20260806-001.pdf,b7af5c4901.pdf
 0514,大東銀行,2023,期末残高表,38,国債+地方債+株式,132127.0,1575.0,0.0,,14417.0,True,True,https://www.daitobank.co.jp/investor/library/disclosure/document/file/disclosure202507.pdf,a8a8220bb7.pdf
 0514,大東銀行,2024,期末残高表,38,国債+地方債+株式,130434.0,1071.0,0.0,,11107.0,True,True,https://www.daitobank.co.jp/investor/library/disclosure/document/file/disclosure202607.pdf,c49985b685.pdf
 0514,大東銀行,2025,期末残高表,38,国債+地方債+株式,120735.0,1070.0,0.0,,6281.0,True,True,https://www.daitobank.co.jp/investor/library/disclosure/document/file/disclosure202607.pdf,c49985b685.pdf
@@ -53,20 +63,49 @@ fi_code,name,year,method,page,checks,total_matched,foreign_bond,foreign_equity,f
 0522,京葉銀行,2025,期末残高表,45,国債+地方債+株式,1124845.0,,,105139.0,244194.0,False,False,https://www.keiyobank.co.jp/ir/shared/pdf/report_2026_shiryou_h1.pdf,3cfb074b1c.pdf
 0532,大光銀行,2024,期末残高表,32,国債+地方債+株式,342696.0,43760.0,,,136675.0,True,False,https://www.taikobank.jp/images/ir/disclosure/dis2026/dis2026d.pdf,f1de94906d.pdf
 0532,大光銀行,2025,期末残高表,32,国債+地方債+株式,325582.0,35381.0,,,101828.0,True,False,https://www.taikobank.jp/images/ir/disclosure/dis2026/dis2026d.pdf,f1de94906d.pdf
+0542,あいち銀行,2023,期末残高表,78,国債+地方債+株式,967397.0,44367.0,0.0,,,True,True,https://www.aichi-fg.co.jp/ir/files/pdf/202503_all_03.pdf,c751f1141c.pdf
+0542,あいち銀行,2024,期末残高表,78,国債+地方債+株式,1192080.0,39784.0,0.0,,,True,True,https://www.aichi-fg.co.jp/ir/files/pdf/202503_all_03.pdf,c751f1141c.pdf
 0543,名古屋銀行,2024,期末残高表,15,国債+地方債+株式,940306.0,225554.0,0.0,,,True,True,https://www.meigin.com/ir/ir-library/disclosure/pdf/2026/04.pdf,084bc8c9ea.pdf
-0543,名古屋銀行,2025,期末残高表,15,国債+地方債,1051229.0,225554.0,0.0,,,True,True,https://www.meigin.com/ir/ir-library/disclosure/pdf/2026/04.pdf,084bc8c9ea.pdf
+0543,名古屋銀行,2025,期末残高表,15,国債+地方債+株式,1051229.0,237281.0,0.0,,,True,True,https://www.meigin.com/ir/ir-library/disclosure/pdf/2026/04.pdf,084bc8c9ea.pdf
 0565,島根銀行,2023,残存期間別残高表,66,国債+地方債+株式,,0.0,0.0,,,True,True,https://www.shimagin.co.jp/wp-pe3atrj7db2s/wp-content/themes/shimagin/assets/pdf/toshi/disclosure/discloure/disclosure2024.pdf,4d65fe1727.pdf
 0565,島根銀行,2024,残存期間別残高表,69,国債+地方債+株式,,0.0,0.0,,,True,True,https://www.shimagin.co.jp/wp-pe3atrj7db2s/wp-content/themes/shimagin/assets/pdf/toshi/disclosure/discloure/disclosure2025.pdf,9103866396.pdf
 0565,島根銀行,2025,残存期間別残高表,67,国債+地方債+株式,,0.0,0.0,,,True,True,https://www.shimagin.co.jp/wp-pe3atrj7db2s/wp-content/themes/shimagin/assets/pdf/toshi/disclosure/discloure/disclosure2026.pdf,7eee0b49ea.pdf
 0566,トマト銀行,2023,期末残高表,75,国債+地方債+株式,158493.0,51764.0,0.0,,84871.0,True,True,https://www.tomatobank.co.jp/investor/ir_library/disclosure/2025/disc_2025_7.pdf,bd69c53a3c.pdf
 0566,トマト銀行,2024,期末残高表,75,国債+地方債+株式,155941.0,35751.0,0.0,,68550.0,True,True,https://www.tomatobank.co.jp/investor/ir_library/disclosure/2026/disc_2026_7.pdf,908d001754.pdf
 0566,トマト銀行,2025,期末残高表,75,国債+地方債+株式,158920.0,36117.0,0.0,,49315.0,True,True,https://www.tomatobank.co.jp/investor/ir_library/disclosure/2026/disc_2026_7.pdf,908d001754.pdf
+0569,もみじ銀行,2024,期末残高表（原資料単位: 億円→百万円換算）,24,国債+地方債+株式,706000.0,77400.0,0.0,,,True,True,https://www.ymfg.co.jp/ja/ir/library/integrated-report/COPY-202603/main/01/teaserItems2/0/linkList/04/link/202603_ymfg_f_mb.pdf,633934a764.pdf
+0569,もみじ銀行,2025,期末残高表（原資料単位: 億円→百万円換算）,24,国債+地方債+株式,653600.0,900.0,0.0,,,True,True,https://www.ymfg.co.jp/ja/ir/library/integrated-report/COPY-202603/main/01/teaserItems2/0/linkList/04/link/202603_ymfg_f_mb.pdf,633934a764.pdf
+0572,徳島大正銀行,2023,期末残高表,121,国債+地方債+株式,382166.0,173295.0,0.0,,217445.0,True,True,https://www.tomony-hd.co.jp/ir/library/pdf/disc2025e_re.pdf,e165ef6a34.pdf
+0572,徳島大正銀行,2024,期末残高表,121,国債+地方債+株式,388301.0,143388.0,0.0,,187887.0,True,True,https://www.tomony-hd.co.jp/ir/library/pdf/disc2026e_re.pdf,dedca18436.pdf
+0572,徳島大正銀行,2025,期末残高表,121,国債+地方債+株式,393778.0,137784.0,0.0,,173057.0,True,True,https://www.tomony-hd.co.jp/ir/library/pdf/disc2026e_re.pdf,dedca18436.pdf
+0573,香川銀行,2023,期末残高表,205,国債+地方債+株式,303452.0,53302.0,0.0,,141309.0,True,True,https://www.tomony-hd.co.jp/ir/library/pdf/disc2025e_re.pdf,e165ef6a34.pdf
+0573,香川銀行,2024,期末残高表,205,国債+地方債+株式,345560.0,68899.0,20.0,,175592.0,True,True,https://www.tomony-hd.co.jp/ir/library/pdf/disc2026e_re.pdf,dedca18436.pdf
+0573,香川銀行,2025,期末残高表,205,国債+地方債+株式,377849.0,95987.0,16.0,,195982.0,True,True,https://www.tomony-hd.co.jp/ir/library/pdf/disc2026e_re.pdf,dedca18436.pdf
+0576,愛媛銀行,2023,期末残高表,52,国債+地方債+株式,614121.0,309616.0,0.0,,,True,True,https://www.himegin.co.jp/stockholder/library/file/disclosure/2025/main.pdf,50b28a100a.pdf
+0576,愛媛銀行,2024,期末残高表,52,国債+地方債+株式,584185.0,291694.0,0.0,,,True,True,https://www.himegin.co.jp/stockholder/library/file/disclosure/2026/main.pdf,165932e427.pdf
+0576,愛媛銀行,2025,期末残高表,52,国債+地方債+株式,601661.0,312662.0,0.0,,,True,True,https://www.himegin.co.jp/stockholder/library/file/disclosure/2026/main.pdf,165932e427.pdf
+0583,佐賀共栄銀行,2024,期末残高表,33,国債+地方債+株式,40357.0,1797.0,0.0,,9367.0,True,True,https://www.kyogin.co.jp/uploads/files/about/ir/disclosure/202603/%E2%97%8F202603disclosure.pdf,7c0649b00c.pdf
+0583,佐賀共栄銀行,2025,期末残高表,33,国債+地方債+株式,29310.0,288.0,0.0,,11511.0,True,True,https://www.kyogin.co.jp/uploads/files/about/ir/disclosure/202603/%E2%97%8F202603disclosure.pdf,7c0649b00c.pdf
+0585,長崎銀行,2024,期末残高表,145,国債+地方債+株式,12302.0,0.0,,,11258.0,True,False,https://www.nnfh.co.jp/assets/pdf/shareholder/ir/disclosure_chukandisclosure/disclo_202607/shiryou_all.pdf,098d84c233.pdf
+0585,長崎銀行,2025,期末残高表,145,国債+地方債+株式,32610.0,0.0,,,11567.0,True,False,https://www.nnfh.co.jp/assets/pdf/shareholder/ir/disclosure_chukandisclosure/disclo_202607/shiryou_all.pdf,098d84c233.pdf
 1003,室蘭,2024,種類別期末残高表（内訳合計一致）,34,内訳合計,4761.0,,,,,False,False,https://www.shinkin.co.jp/muroshin/info/pdf/discro202603.pdf,339b60feb5.pdf
 1003,室蘭,2025,種類別期末残高表（内訳合計一致）,34,内訳合計,135.0,,,,,False,False,https://www.shinkin.co.jp/muroshin/info/pdf/discro202603.pdf,339b60feb5.pdf
+1006,苫小牧,2020,種類別期末残高表（内訳合計一致）,15,内訳合計,22038.0,,,0.0,0.0,False,False,https://www.shinkin.co.jp/tomashin/pdf/disclo/disclo_2022_5.pdf,9edd9f37e6.pdf
+1006,苫小牧,2021,種類別期末残高表（内訳合計一致）,15,内訳合計,18814.0,,,1069.0,0.0,False,False,https://www.shinkin.co.jp/tomashin/pdf/disclo/disclo_2023_5.pdf,9023fdd537.pdf
+1006,苫小牧,2022,種類別期末残高表（内訳合計一致）,15,内訳合計,18156.0,,,3324.0,1026.0,False,False,https://www.shinkin.co.jp/tomashin/pdf/disclo/disclo_2024_5.pdf,a30db084c4.pdf
+1006,苫小牧,2023,種類別期末残高表（内訳合計一致）,15,内訳合計,17987.0,,,5866.0,495.0,False,False,https://www.shinkin.co.jp/tomashin/pdf/disclo/disclo_2025_5.pdf,95a505ba8c.pdf
+1006,苫小牧,2024,種類別期末残高表（内訳合計一致）,15,内訳合計,11843.0,,,2797.0,984.0,False,False,https://www.shinkin.co.jp/tomashin/pdf/disclo/disclo_2026_5.pdf,a04b144e5e.pdf
+1006,苫小牧,2025,種類別期末残高表（内訳合計一致）,15,内訳合計,2104.0,,,498.0,464.0,False,False,https://www.shinkin.co.jp/tomashin/pdf/disclo/disclo_2026_5.pdf,a04b144e5e.pdf
+1150,盛岡,2023,種類別期末残高表（内訳合計一致）,30,内訳合計,999.0,,,299.0,100.0,False,False,https://www.shinkin.co.jp/morishin/about/pdf/disclo2024_siryo.pdf,58ebd1de0b.pdf
+1150,盛岡,2024,種類別期末残高表（内訳合計一致）,30,内訳合計,1333.0,,,400.0,0.0,False,False,https://www.shinkin.co.jp/morishin/about/pdf/disclo2025_siryo.pdf,d5d4483635.pdf
+1150,盛岡,2025,種類別期末残高表（内訳合計一致）,30,内訳合計,1938.0,,,0.0,394.0,False,False,https://www.shinkin.co.jp/morishin/about/pdf/disclo2026_siryo.pdf,8eee45a50e.pdf
 1152,宮古,2024,種類別期末残高表（内訳合計一致）,4,内訳合計,3444.0,,,,,False,False,https://www.shinkin.co.jp/i-miyako/pdf/report_202509.pdf,6db971487e.pdf
+1188,あぶくま,2024,種類別期末残高表（内訳合計一致）,9,内訳合計,100.0,,,16.0,8.8,False,False,https://www.shinkin.co.jp/abukuma/img/top/disclo/r7/disclo/4.pdf,5bc7b7c910.pdf
+1188,あぶくま,2025,種類別期末残高表（内訳合計一致）,9,内訳合計,107857.0,,,15373.0,9168.0,False,False,https://www.shinkin.co.jp/abukuma/img/top/disclo/r7/disclo/4.pdf,5bc7b7c910.pdf
+1203,高崎,2025,種類別期末残高表（内訳合計一致）,9,内訳合計,24513.0,0.0,,,,True,False,https://www.shinkin.co.jp/takasaki/assets/pdf/about/disclosure/r07-disclosure-document.pdf,0fc09d00f2.pdf
 1223,鹿沼相互,2021,種類別期末残高表（内訳合計一致）,29,内訳合計,1585.0,,,,,False,False,https://www.shinkin.co.jp/kanuma/about/data/disclosure_202303.pdf,10a5e5a98e.pdf
-1223,鹿沼相互,2022,種類別期末残高表（内訳合計一致）,29,内訳合計,100.0,,,,,False,False,https://www.shinkin.co.jp/kanuma/about/data/disclosure_202403.pdf,619e908e3e.pdf
-1223,鹿沼相互,2023,種類別期末残高表（内訳合計一致）,29,内訳合計,900.0,,,,,False,False,https://www.shinkin.co.jp/kanuma/about/data/disclosure_202503.pdf,45a829b8d9.pdf
+1223,鹿沼相互,2022,種類別期末残高表（内訳合計一致）,29,内訳合計,1351.0,,,100.0,,False,False,https://www.shinkin.co.jp/kanuma/about/data/disclosure_202403.pdf,619e908e3e.pdf
+1223,鹿沼相互,2023,種類別期末残高表（内訳合計一致）,29,内訳合計,462.0,,,,,False,False,https://www.shinkin.co.jp/kanuma/about/data/disclosure_202503.pdf,45a829b8d9.pdf
 1223,鹿沼相互,2024,種類別期末残高表（内訳合計一致）,29,内訳合計,1154.0,,,300.0,149.0,False,False,https://www.shinkin.co.jp/kanuma/about/data/disclosure_202603.pdf,9616dcaa70.pdf
 1223,鹿沼相互,2025,種類別期末残高表（内訳合計一致）,29,内訳合計,6465.0,,,4980.0,1406.0,False,False,https://www.shinkin.co.jp/kanuma/about/data/disclosure_202603.pdf,9616dcaa70.pdf
 1282,湘南,2024,種類別期末残高表（内訳合計一致）,7,内訳合計,2407.0,,,,217.0,False,False,https://www.shinkin.co.jp/shonan/about/pdf/dis_2025_all.pdf,419f6f5e8e.pdf
@@ -92,7 +131,42 @@ fi_code,name,year,method,page,checks,total_matched,foreign_bond,foreign_equity,f
 1448,興能,2025,種類別期末残高表（内訳合計一致）,38,内訳合計,88664.0,,,18976.0,16397.0,False,False,https://www.kono-shinkin.co.jp/digitalcatalog/disclosure2026/79th.pdf,f01647bb60.pdf
 1501,しずおか焼津,2023,種類別期末残高表（内訳合計一致）,25,内訳合計,15748.0,,,0.0,,False,False,https://www.shizuokayaizu-shinkin.co.jp/files/user/images/2025ディスクロージャー誌（セキュリティ有）.pdf,53ec1edbeb.pdf
 1501,しずおか焼津,2024,種類別期末残高表（内訳合計一致）,25,内訳合計,11579.0,,,0.0,,False,False,https://www.shizuokayaizu-shinkin.co.jp/files/user/images/2025ディスクロージャー誌（セキュリティ有）.pdf,53ec1edbeb.pdf
+1501,しずおか焼津,2025,種類別期末残高表（内訳合計一致）,25,内訳合計,28020.0,,,5990.0,,False,False,https://www.shizuokayaizu-shinkin.co.jp/files/topics/2202_ext_04_9.pdf,03eb1a98cc.pdf
 1502,静清,2023,種類別期末残高表（内訳合計一致）,25,内訳合計,21134.0,,,1704.0,0.0,False,False,https://www.SEISHIN-SHINKIN.co.jp/about/disclosure/pdf/2025/disclosure2025.pdf,1edf393515.pdf
 1502,静清,2024,種類別期末残高表（内訳合計一致）,25,内訳合計,16808.0,,,0.0,0.0,False,False,https://www.SEISHIN-SHINKIN.co.jp/about/disclosure/pdf/2026/disclosure2026.pdf,cc011eceea.pdf
 1502,静清,2025,種類別期末残高表（内訳合計一致）,25,内訳合計,110868.0,,,9583.0,0.0,False,False,https://www.SEISHIN-SHINKIN.co.jp/about/disclosure/pdf/2026/disclosure2026.pdf,cc011eceea.pdf
+1503,浜松いわた,2022,種類別期末残高表（内訳合計一致）,27,内訳合計,176751.0,,,3371.0,40132.0,False,False,https://hamamatsu-iwata.jp/about/docs/disclo24.pdf,120b81c753.pdf
+1503,浜松いわた,2023,種類別期末残高表（内訳合計一致）,28,内訳合計,103429.0,,,2353.0,46545.0,False,False,https://hamamatsu-iwata.jp/about/docs/disclo25.pdf,e0bfc82439.pdf
+1503,浜松いわた,2024,種類別期末残高表（内訳合計一致）,30,内訳合計,40850.0,,,1100.0,3928.0,False,False,https://hamamatsu-iwata.jp/about/docs/disclo26.pdf,06c8a7218c.pdf
+1503,浜松いわた,2025,種類別期末残高表（内訳合計一致）,30,内訳合計,41589.0,,,5217.0,835.0,False,False,https://hamamatsu-iwata.jp/about/docs/disclo26.pdf,06c8a7218c.pdf
 1517,遠州,2025,種類別期末残高表（内訳合計一致）,56,内訳合計,18954.0,,,9717.0,6039.0,False,False,https://www.enshu-shinkin.jp/about/docs/dc_2026.pdf,e24aea459f.pdf
+1557,豊川,2023,種類別期末残高表（内訳合計一致）,42,内訳合計,31334.0,,,0.0,,False,False,https://www.kawa-shin.co.jp/assets/pdf/company_profile/disclosure/2024_disc.pdf,56dea313da.pdf
+1557,豊川,2024,種類別期末残高表（内訳合計一致）,42,内訳合計,20152.0,,,0.0,,False,False,https://www.kawa-shin.co.jp/assets/pdf/company_profile/disclosure/2025_disc.pdf,22f4f73dca.pdf
+1557,豊川,2025,種類別期末残高表（内訳合計一致）,12,内訳合計,5010.0,,,0.0,,False,False,https://www.kawa-shin.co.jp/assets/pdf/company_profile/disclosure/s_2026.pdf,ff35537810.pdf
+1561,西尾,2020,種類別期末残高表（内訳合計一致）,26,内訳合計,56776.0,,,1003.0,0.0,False,False,https://www.shinkin.co.jp/nishio/_upload/pages/file/f867bf0f76234e7b9e91ea527f2f80f8.pdf,fcc38a210c.pdf
+1561,西尾,2021,種類別期末残高表（内訳合計一致）,25,内訳合計,62317.0,,,602.0,0.0,False,False,https://www.shinkin.co.jp/nishio/_upload/pages/file/0d5b55cc936e1be80b5eb42351029966.pdf,a358a42c51.pdf
+1561,西尾,2022,種類別期末残高表（内訳合計一致）,26,内訳合計,72293.0,,,1201.0,0.0,False,False,https://www.shinkin.co.jp/nishio/_upload/pages/file/fe3487abb3f1d658a5514298cf5e27f0.pdf,c7ad28683e.pdf
+1561,西尾,2023,種類別期末残高表（内訳合計一致）,26,内訳合計,41360.0,,,500.0,0.0,False,False,https://www.shinkin.co.jp/nishio/_upload/pages/file/9f1af3856536fe6b896c0a7a6a616c0d.pdf,2f58e62de2.pdf
+1561,西尾,2024,種類別期末残高表（内訳合計一致）,26,内訳合計,9709.0,,,1498.0,4.0,False,False,https://www.shinkin.co.jp/nishio/_upload/pages/file/febccced202a7c9edd67ad97b68406be.pdf,13d0829704.pdf
+1561,西尾,2025,種類別期末残高表（内訳合計一致）,26,内訳合計,5340.0,,,2392.0,0.0,False,False,https://www.shinkin.co.jp/nishio/_upload/pages/file/febccced202a7c9edd67ad97b68406be.pdf,13d0829704.pdf
+1602,滋賀中央,2022,種類別期末残高表（内訳合計一致）,26,内訳合計,10646.0,,,0.0,9846.0,False,False,https://www.shigachushin.jp/about/data/disclosure2024.pdf,a42bedbe7d.pdf
+1602,滋賀中央,2023,種類別期末残高表（内訳合計一致）,25,内訳合計,10965.0,,,0.0,10161.0,False,False,https://www.shigachushin.jp/about/data/disclosure2025.pdf,d757837b01.pdf
+1602,滋賀中央,2024,種類別期末残高表（内訳合計一致）,12,内訳合計,9658.0,,,4700.0,1367.0,False,False,https://www.shigachushin.jp/about/data/disclosure2026_002.pdf,8b0dd027ac.pdf
+1602,滋賀中央,2025,種類別期末残高表（内訳合計一致）,12,内訳合計,9289.0,,,6587.0,0.0,False,False,https://www.shigachushin.jp/about/data/disclosure2026_002.pdf,8b0dd027ac.pdf
+1611,京都中央,2022,種類別期末残高表（内訳合計一致）,23,内訳合計,1963400.0,,,289727.0,107423.0,False,False,https://www.chushin.co.jp/common/pdf/20240726.pdf,fd2be3a10e.pdf
+1611,京都中央,2023,種類別期末残高表（内訳合計一致）,23,内訳合計,1841492.0,,,235394.0,112339.0,False,False,https://www.chushin.co.jp/common/pdf/20250725.pdf,6ebc523b47.pdf
+1611,京都中央,2024,種類別期末残高表（内訳合計一致）,23,内訳合計,115313.0,,,9927.0,3461.0,False,False,https://www.chushin.co.jp/common/pdf/20260729.pdf,104040ff49.pdf
+1611,京都中央,2025,種類別期末残高表（内訳合計一致）,23,内訳合計,108056.0,,,21043.0,1304.0,False,False,https://www.chushin.co.jp/common/pdf/20260729.pdf,104040ff49.pdf
+1620,京都北都,2024,種類別期末残高表（内訳合計一致）,38,内訳合計,192713.0,,,51217.0,24018.0,False,False,https://www.hokuto-shinkin.co.jp/company/pdf/dis2026_all.pdf,bced23f42e.pdf
+1620,京都北都,2025,種類別期末残高表（内訳合計一致）,38,内訳合計,22005.0,,,8798.0,,False,False,https://www.hokuto-shinkin.co.jp/company/pdf/dis2026_all.pdf,bced23f42e.pdf
+1701,鳥取,2024,種類別期末残高表（内訳合計一致）,26,内訳合計,662.0,,,601.0,9.0,False,False,https://www.shinkin.co.jp/torishin/about/keiei/pdf/202603discr.pdf,0cfbe6cfcf.pdf
+1701,鳥取,2025,種類別期末残高表（内訳合計一致）,26,内訳合計,2415.0,,,800.0,165.0,False,False,https://www.shinkin.co.jp/torishin/about/keiei/pdf/202603discr.pdf,0cfbe6cfcf.pdf
+1703,倉吉,2023,種類別期末残高表（内訳合計一致）,19,内訳合計,12518.0,,,1159.0,322.0,False,False,https://www.kurashin.co.jp/files/original/20251226151322331eca9db81.pdf,f6fb46fcc6.pdf
+1743,備前日生,2023,種類別期末残高表（内訳合計一致）,42,内訳合計,5639.0,,,1499.0,0.0,False,False,https://www.shinkin.co.jp/bizenhinase/_pdf/about/disclosure/20240725.pdf,48155e023f.pdf
+1743,備前日生,2024,種類別期末残高表（内訳合計一致）,46,内訳合計,9655.0,,,3971.0,387.0,False,False,https://www.shinkin.co.jp/bizenhinase/_pdf/about/disclosure/20250725.pdf,d46e2b30a9.pdf
+1743,備前日生,2025,種類別期末残高表（内訳合計一致）,46,内訳合計,3824.0,,,1997.0,6.0,False,False,https://www.shinkin.co.jp/bizenhinase/_pdf/about/disclosure/20260731.pdf,c29d5250f4.pdf
+1780,萩山口,2023,種類別期末残高表（内訳合計一致）,5,内訳合計,900.0,,,,,False,False,https://www.shinkin.co.jp/hagiyamaguchi/about/pdf/disclosure2024hanki.pdf,9fa82286a0.pdf
+1933,九州ひぜん,2022,種類別期末残高表（内訳合計一致）,41,内訳合計,1554.0,,,500.0,0.0,False,False,https://www.qhize.com/files/uploads/2024discro_2.pdf,eb0f8f9a04.pdf
+1933,九州ひぜん,2023,種類別期末残高表（内訳合計一致）,39,内訳合計,3763.0,,,300.0,0.0,False,False,https://www.qhize.com/files/uploads/2025discro_1.pdf,f56f33c208.pdf
+1933,九州ひぜん,2024,種類別期末残高表（内訳合計一致）,39,内訳合計,2232.0,,,100.0,0.0,False,False,https://www.qhize.com/files/uploads/2026disclo.pdf,33f122a436.pdf
+1933,九州ひぜん,2025,種類別期末残高表（内訳合計一致）,39,内訳合計,1321.0,,,99.0,0.0,False,False,https://www.qhize.com/files/uploads/2026disclo.pdf,33f122a436.pdf

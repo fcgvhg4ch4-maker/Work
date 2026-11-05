@@ -26,7 +26,7 @@ ONLY = set(sys.argv[3:])
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 OUT = RAW / "disc"
 MAXDL = 6
-MAXPAGES = 120
+MAXPAGES = 50
 UA = "Mozilla/5.0 (research crawler; financial-institution disclosure survey)"
 
 NAV_KW = re.compile(r"ディスクロ|disclosure|IR|ＩＲ|投資家|株主|決算|財務|経営情報|会社情報|企業情報|銀行概要|当行について|当金庫について|"
@@ -35,14 +35,23 @@ PDF_KW = re.compile(r"ディスクロ|disclosure|disclo|資料編|データ編|�
 YEAR_KW = re.compile(r"2026|2025|令和[78]|R[78]|r0?[78]")
 
 
-def fetch(url, dest=None, timeout=40):
+def fetch(url, dest=None, timeout=40, tries=3):
+    """curl で取得。ネットワーク瞬断（DNS失敗・トンネル切断）に備えて指数バックオフで再試行。"""
+    import time
     cmd = ["curl", "-sSL", "--fail", "-m", str(timeout), "-A", UA, "--max-filesize", "80000000", url]
     if dest:
         cmd += ["-o", str(dest)]
-        return subprocess.run(cmd, capture_output=True).returncode == 0
-    r = subprocess.run(cmd, capture_output=True)
-    if r.returncode != 0:
-        return None
+    for i in range(tries):
+        r = subprocess.run(cmd, capture_output=True)
+        if r.returncode == 0:
+            break
+        if r.returncode == 22:  # HTTP 4xx/5xx は再試行しない
+            return False if dest else None
+        time.sleep(2 * (2 ** i))
+    else:
+        return False if dest else None
+    if dest:
+        return True
     b = r.stdout
     for enc in ("utf-8", "cp932", "euc_jp"):
         try:
@@ -50,6 +59,15 @@ def fetch(url, dest=None, timeout=40):
         except UnicodeDecodeError:
             continue
     return b.decode("utf-8", "replace")
+
+
+def render(url):
+    """headless Chromium で描画後の HTML を取得（scripts/render.js）。失敗時 None。"""
+    js = pathlib.Path(__file__).with_name("render.js")
+    npm_root = subprocess.run(["npm", "root", "-g"], capture_output=True, text=True).stdout.strip()
+    r = subprocess.run(["node", str(js), url], capture_output=True, timeout=120,
+                       env={**__import__("os").environ, "NODE_PATH": npm_root})
+    return r.stdout.decode("utf-8", "replace") if r.returncode == 0 and r.stdout else None
 
 
 def links(base, page):
@@ -105,10 +123,18 @@ def crawl(code, home):
         if url in seen:
             continue
         seen.add(url)
-        page = fetch(url, timeout=25)
+        page = fetch(url, timeout=15, tries=2)
         if not page:
             continue
-        for u, t in links(url, page):
+        if re.search(r"disclo|ディスクロ", url + via, re.I):
+            via = via + " ディスクロ"
+        lk = list(links(url, page))
+        if d <= 1 and re.search(r"disclo|ディスクロ|ir/|library", url + via, re.I) and not any(
+                up.urlparse(u).path.lower().endswith(".pdf") for u, _ in lk):
+            rp = render(url)  # JS で一覧を描画する IR ページ（IRPOCKET 等）
+            if rp:
+                lk = list(links(url, rp))
+        for u, t in lk:
             p = up.urlparse(u)
             if p.scheme not in ("http", "https"):
                 continue
@@ -185,6 +211,9 @@ def extract(txt):
 def process(u):
     code, home = u["fi_code"], u["website"]
     d = OUT / code
+    if (d / "result.json").exists() and not __import__("os").environ.get("FORCE"):
+        r = json.loads((d / "result.json").read_text())
+        return code, u["short_name"], r["n_candidates"], len(r["checked"]), any(g.get("has_foreign") for g in r["checked"])
     d.mkdir(parents=True, exist_ok=True)
     cands = crawl(code, home)
     nm = u["short_name"].replace("銀行", "")
@@ -202,11 +231,11 @@ def process(u):
         if len(same) >= 3 and len(same) <= 60:
             rest = [c for c in cands if not c["url"].startswith(top_dir)]
             cands = same[:40] + rest
-    maxdl = max(MAXDL, min(40, sum(1 for c in cands if cands and c["url"].startswith(cands[0]["url"].rsplit("/", 1)[0] + "/"))))
+    maxdl = max(MAXDL, min(30, sum(1 for c in cands if cands and c["url"].startswith(cands[0]["url"].rsplit("/", 1)[0] + "/"))))
     got = []
     target = re.compile(r"(残存期間|種類別|有価証券残高)[\s\S]{0,6000}(外国債券|外国証券)")
     hit = False
-    for i, c in enumerate(cands[:max(maxdl, 20)]):
+    for i, c in enumerate(cands[:max(maxdl, 12)]):
         if i >= maxdl and hit:
             break
         if rank(c) < 0 and got and hit:
@@ -234,7 +263,7 @@ def main():
     with open(ROOT / "data" / "universe.csv", encoding="utf-8") as f:
         uni = [r for r in csv.DictReader(f) if (CAT == "all" or r["category"] == CAT) and (not ONLY or r["fi_code"] in ONLY)]
     OUT.mkdir(parents=True, exist_ok=True)
-    with cf.ThreadPoolExecutor(8) as ex:
+    with cf.ThreadPoolExecutor(10) as ex:
         for code, name, nc, ng, ok in ex.map(process, uni):
             print(f"{code} {name}: candidates={nc} checked={ng} foreign_hit={'Y' if ok else '-'}", flush=True)
 

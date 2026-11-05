@@ -9,11 +9,12 @@
 import csv
 import hashlib
 import pathlib
+import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 ACCESSED = "2026-11-05"
-FY = {2025: "FY2025(2026/3期)", 2024: "FY2024(2025/3期)", 2023: "FY2023(2024/3期)", 2022: "FY2022(2023/3期)"}
+FY = {2025: "FY2025(2026/3期)", 2024: "FY2024(2025/3期)", 2023: "FY2023(2024/3期)"}
 
 
 def read(n):
@@ -95,6 +96,27 @@ def main():
             n += 1
     write("financial_data.csv", fin, list(fin[0].keys()))
     print(f"auto rows={len(out)} sources={len(srcs)} upgraded_to_verified={n}")
+
+    # ---- バッチ記録（Batch2b〜5）：業態別に、外国証券（FY2025）取得状況を集計して batch_log.csv を更新
+    import json
+    raw = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else None
+    got = {r["fi_code"] for r in out if r["metric"] == "外国証券" and r["value"] != "" and r["period"] == FY[2025]}
+    dep = {r["fi_code"] for r in out if r["metric"] == "預金" and r["value"] != "" and r["period"] == FY[2025]}
+    log = [r for r in read("batch_log.csv") if not r["batch"].startswith(("Batch2b", "Batch3", "Batch4", "Batch5"))]
+    for b, cats in [("Batch2b", ("地方銀行", "第二地方銀行")), ("Batch3-5", ("信用金庫", "信金中央金庫"))]:
+        codes = [c for c, u in uni.items() if u["category"] in cats]
+        crawled = [c for c in codes if raw and (raw / "disc" / c / "result.json").exists()]
+        ok = [c for c in codes if c in got]
+        short = [c for c in crawled if c not in got]
+        note = "外国証券FY2025を検証付きで取得できた先＝データ取得成功。"
+        if b == "Batch3-5":
+            note += f" 信金の預金FY2025取得 {sum(1 for c in codes if c in dep)} 先（規模区分の判定に使用）。"
+        log.append(dict(batch=b, run_date=ACCESSED, scope="・".join(cats) + "：ディスクロ誌から外国証券等（3期）",
+                        target=len(codes), completed=len(crawled), not_started=len(codes) - len(crawled), data_ok=len(ok),
+                        data_short=len(short),
+                        next_target="未取得先：持株会社サイト/JS描画サイトの直接PDF指定（disclosure_seeds.csv）、表形式の個別対応",
+                        note=note))
+    write("batch_log.csv", log, list(log[0].keys()))
 
 
 if __name__ == "__main__":

@@ -92,9 +92,13 @@ def method1(code, pages, ref):
                         continue
                     # 同じ表の上方 18 行から各ラベル行を拾う
                     rows = {}
-                    for lj in range(max(0, li - 18), li):
+                    for lj in range(li - 1, max(-1, li - 19), -1):  # 合計行から上へ、直前ブロックの境界で停止
+                        if re.search(r"20[12]\d\s*年\s*(3\s*月|度)|令和\s*\d+\s*年", lines[lj]) and not label_of(lines[lj])[0]:
+                            break
                         l2, _ = label_of(lines[lj])
-                        if l2 and l2 != "合計":
+                        if l2 == "合計":
+                            break
+                        if l2:
                             cand = sorted([t for t in toks(lines[lj]) if abs(t[0] - pos) <= 7], key=lambda t: abs(t[0] - pos))
                             rows.setdefault(l2, cand[0][1] * scale if cand else None)
                     checks = [m for m in ("国債", "地方債", "株式") if near(rows.get(m), ref.get((code, m, y)), tol)]
@@ -175,7 +179,9 @@ def method3(code, pages, ref):
             rows, hdr = {}, None
             for lj in range(li - 1, max(-1, li - 16), -1):
                 l2, _ = label_of(lines[lj])
-                if l2 and l2 != "合計" and l2 not in rows:
+                if l2 == "合計":
+                    break
+                if l2 and l2 not in rows:
                     rows[l2] = toks(lines[lj])
                 if HDR_YEAR.search(lines[lj]) and hdr is None and lj < li - 2:
                     hdr = lines[lj]
@@ -275,6 +281,8 @@ def main():
                     m4[(y,)] = v
             m3 = {}
             for (y,), v in method3(code, pages, ref).items():
+                if any(k[0] == code for k in ref) and (code, "有価証券", y) not in ref:
+                    continue  # 銀行は全銀協計数で検証できない年度（FY2022以前等）を採らない
                 if (code, "有価証券", y) in ref:  # 全銀協計数のある銀行は合計一致を必須に
                     if not near(v["total"], ref[(code, "有価証券", y)]):
                         continue
